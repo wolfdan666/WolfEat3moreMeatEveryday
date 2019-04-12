@@ -40,7 +40,8 @@ int Manacher()
     int len = Init();  // 取得新字符串长度并完成向 s_new 的转换
     int max_len = -1;  // 最长回文长度
 
-    int id;
+    // int id;// 这个人写的id没有赋值就直接用了，不好
+    int id = 0;  // 我改掉了
     int mx = 0;
 
     for (int i = 1; i < len; i++)

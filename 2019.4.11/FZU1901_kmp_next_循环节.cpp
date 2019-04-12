@@ -10,7 +10,7 @@
 求出字符串的next数组。可知len-next[len]就是字符串的最小循环节，然后next数组回退，len-next[next[len]]就是第二小循环节……
 
 然后发现fzu好像不支持bits/stdc++  因为用bits就CE compile error
-
+2019年4月11日23:28:18 回家
 */
 #include <iostream>
 #include <cstdio>
