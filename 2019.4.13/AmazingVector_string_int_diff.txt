@@ -1,0 +1,19 @@
+#vector<int>&vector<string>总结
+    经过自己做题时出现的bug,然后自己的践行(艰辛)探索,发现
+1. 一开始vector<int> t和vector<string> s都是空的，所以不能直接t[i],s[i]初始化赋值
+2. 如果一旦对t.push_back一个值之后，就可以直接对t进行赋值，以及输出操作，不过t的size不会变，你需要自己去resize，见(图一)[./1.png]
+
+**但是vector<string>却不行,只能在size内赋值，否者程序必定中断**
+
+3. 对于vector<int> t(10)会自动初始化为十个0，因为int是内置类型，而vector<string> s(10)由类型默认初始化，10个空的string元素,然后就可以直接赋值了，因为初始化过了
+
+
+#总结
+    使用vector一定要区分好
+    1. 初始化  和  赋值
+    2. size 和 push_back
+
+出错起因: 就是对上面两个概念很 模糊
+然后看 刘佳汝 大佬 的书 说可以直接 赋值 ， 自己理解成了可以直接初始化...
+
+写bug，菜是原罪
