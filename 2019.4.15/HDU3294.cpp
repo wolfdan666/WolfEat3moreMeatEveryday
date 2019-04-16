@@ -18,9 +18,9 @@ using namespace std;
 const int M = 4e5 + 10;
 // const int M = 2e5 + 10;
 int p[M];
-// string s,t;
-string t;
-char s[M];
+string s,t;
+// string t;
+// char s[M];
 char a;
 char b[26];
 
@@ -33,6 +33,7 @@ int Init(string ts){
         t[j++] = ts[i];
         j++;
     }
+    cout<<t<<"输出"<<endl;
     return j;
 }
 
@@ -40,28 +41,38 @@ int Manacher(string ts,int &begin){
     int len = Init(ts);
     int max_len = 1;// 这里是根据题目做的一些修改
     int mx=0,id=0;
+    cout<<t<<"what "<<endl;
     for(int i=1;i<len;i++){
-        if(i<mx) p[i] = max(p[2*id - i],mx - i);
+        if(i<mx) {
+            cout<<"i"<<i<<"id"<<id<<" mx "<<mx<<endl;
+            p[i] = max(p[2*id - i],mx - i);
+        }
         else p[i] = 1;
-        while(t[i-p[i]] == t[i+p[i]]) p[i]++;
+        while(t[i-p[i]] == t[i+p[i]]){
+            if(i==5) cout<<p[i]<<endl;
+            cout<<"L"<<t[i-p[i]]<<"R"<<t[i+p[i]]<<endl;
+            p[i]++;
+        }
         if(mx<i+p[i]){
             mx = i+p[i];
             id = i;
         }
         if(p[i]-1>max_len){
             max_len = p[i] - 1;
+            cout<<max_len<<"YSE?"<<endl;
             // begin = i/2-1; // 刚刚好设计成2倍关系，真好   // 注意要变成下标
             begin =i - (p[i]-1);      // p[i]-1 是s的子回文串长，也是t的回文串的半径长
             begin = (begin+1)/2 - 1;      // 上面正好到达t的最左侧也就是#号的位置，所以加一除2，就是begin位置，-1 后就是它的下标
         }
     }
+    puts("debug begin");for(int i=0;i<len;i++) cout<<p[i]/*<<" "*/; cout<<endl;
     return max_len;
 }
 
 int main(int argc, char const *argv[])
 {
-    ios_base::sync_with_stdio(false);cin.tie(0) ;
-    cout .tie(0) ;
+    // ios_base::sync_with_stdio(false);cin.tie(0) ;
+    // cout .tie(0) ;
     while(cin>>a>>s){
         for(int i=0,j=a-'a';i<26;i++,j=(j+1)%26){   // j记得保持在26里面
             b[j] = 'a' + i; // j = 1（b-'a'）的b对应的是'a' + 0 = 'a'
