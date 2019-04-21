@@ -20,7 +20,7 @@ void f(double x){
 int main(int argc, char const *argv[])
 {
     double k = 0.00000000000001;
-    // cout<<log(e)<<endl;
+    // cout<< pow(6,2) <<endl;
     // cout<<k*log(k)/log(2)<<endl;
     cin>>T;
     while(T--){
