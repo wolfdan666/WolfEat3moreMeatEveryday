@@ -1,5 +1,8 @@
 // 2019年4月21日20:06:37看题
 // 2019年4月21日20:16:22发现是bfs  二分，直接借鉴大佬的来补题
+// 再次看题2019年4月24日14:37:07
+
+// 2019年4月24日16:15:35 才真正理解，花了100mins，GG，发现zoj跑题的服务器崩了...页面可以访问
 /*
 大佬 ： http://www.voidcn.com/article/p-ojlfyuje-bh.html
 
@@ -41,15 +44,14 @@ int bfs (int u) {
         len = e[u].size();
 // printf ("len:%d\n", len);
         for (int i = 0; i < len; i++) {
-            if (dist[e[u][i]] > dist[u] + 1) {  // 这里应该是Floyd的最短路算法  // no ,就是简单的更新距离
+            if (dist[e[u][i]] > dist[u] + 1) {  //更新距离
 // printf ("u:%d\n", e[u][i]);
-                dist[e[u][i]] = dist[u] + 1;
-                p[e[u][i]] = u;
+                dist[e[u][i]] = dist[u] + 1; //  e[u][i]的距离是 dist[u]+1
+                p[e[u][i]] = u;   // e[u][i]的父亲是u不是很明显吗  //对的，通过这个记录最远点和 最开始点的联系
                 q.push(e[u][i]);
             }
         }
     }
-
     return u;
 }
 
@@ -63,9 +65,9 @@ bool judge(int L) {
     for (int i = 1; i <= N; i++)
         dist[i] = INF;
     U = bfs(1);
-    for (int i = 0; i < L; i++) {
+    for (int i = 0; i < L; i++) {  // 找到相隔L的节点做消防站
         if (p[U] == 0) {
-            V = U % N + 1;
+            V = U % N + 1;  // 第一次找就发现最远的在L内，所以V可以随便拿一个
             return true;
         }
         U = p[U];
@@ -74,17 +76,17 @@ bool judge(int L) {
 
     for (int i = 1; i <= N; i++)
         dist[i] = INF;
-    V = bfs(U);
+    V = bfs(U);   // 这里使得p[U]=0
     for (int i = 0; i < L; i++) {
         if (p[V] == 0) {
             if (U == V)
-                V = U % N + 1;
+                V = U % N + 1;  // 如果V是根 且 第一个站和第二个站在相同的地方(即U也是根，那这样情况在前面就会退出)，那么随便取另外一个就行
             return true;
         }
         V = p[V];
     }
 
-    if (U == V)
+    if (U == V)// 这里其实是上面for最后的一个L远的地方未判断，所以这里有这个也是可以直接return的
         V = U % N + 1;
 // printf ("%d %d\n", U, V);
     bfs(V);
