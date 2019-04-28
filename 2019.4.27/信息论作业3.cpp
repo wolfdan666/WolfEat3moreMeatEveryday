@@ -19,7 +19,11 @@
         // input : length  先建立 length 长的全 a 序列, length重循环  最后一个从 a+0到+1到+2(最内层),每个外层一变化都要变化一次,O(3^length)指数爆炸
         for(double i=0.01;i<1.00;i+=0.01){
             for()// length重for3循环，后面计算  sumOf((s<t)||(s>t)) / 3^length  错误率...维护错误率min的i值 看i为多少的时候l错误率最低
-        }*/
+        }
+
+发现还有是精度问题，如果p后面变得很小的时候，那判断的时候很可能去掉几位判断
+最近这几天事情比较多，所以就不写高精度的小数计算了
+        */
 
 
 
@@ -120,8 +124,8 @@ void encord(){// 老师用be end 算 len (概率长度) ,我觉得用p (概率�
     // cout<<"be:"<<be<<"end:"<<end<<endl;
 
 
-    double tp = 0.5*be + 0.5*end;
-    // double tp = 0.01*be + 0.99*end;
+    // double tp = 0.5*be + 0.5*end;
+    double tp = 0.01*be + 0.99*end;
 
 
 
@@ -139,7 +143,7 @@ void encord(){// 老师用be end 算 len (概率长度) ,我觉得用p (概率�
 }
 
 void decord(){
-    cout<<"译码: "<<endl;
+    cout<<"\n译码: "<<endl;
     double res = 0.0;double w = 0.5;
     for(int i=0;i<l;i++,w*=0.5){
         res += w*(ans[i]-'0');
@@ -218,14 +222,16 @@ int main(int argc, char const *argv[]){
     while(cin>>s&&s[0]!='#'){
         encord();
         decord();
-        cout<< ((s<t)||(s>t)) <<endl; // 不等于输出1
+        string tstr;
+        tstr += ((s<t)||(s>t)) == 0 ? "恭喜你,译码和源码完全一样哦":"Sorry,可能长度超出了默认精度范围了哦,有空试试高精度吧";
+        cout<<tstr<<"  此时源码长度为: "<<sl<<endl;
 /*        // 经过研究发现，长度变长的时候会出现不相等的情况，分析得知，是因为算法本身的概率选取的调整问题double tp = 0.01*be + 0.99*end;
         // 选取时应该把tp调整到大区间段(个人猜测，不会证明，但可以写一个循环自动化调参训练...当在某个长度(input)上面达到某个精度的时候输出参数)
         // input : length  先建立 length 长的全 a 序列, length重循环  最后一个从 a+0到+1到+2(最内层),每个外层一变化都要变化一次,O(3^length)指数爆炸
         for(double i=0.01;i<1.00;i+=0.01){
             for()// length重for3循环，后面计算  sumOf((s<t)||(s>t)) / 3^length  错误率...维护错误率min的i值 看i为多少的时候l错误率最低
         }*/
-        cout<<"是否验证下一个字符序列,是则输入,否则输入#:"<<endl;
+        cout<<"\n是否验证下一个字符序列,是则输入,否则输入#:"<<endl;
     }
     return 0;
 }
