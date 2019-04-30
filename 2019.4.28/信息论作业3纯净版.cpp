@@ -194,7 +194,11 @@ int main(int argc, char const *argv[]){
     while(cin>>s&&s[0]!='#'){
         encord();
         decord();
-        cout<< ((s<t)||(s>t)) == 0?"恭喜你,译码和源码完全一样哦":"Sorry,可能长度超出了默认精度范围了哦,有空试试高精度吧"<<endl;
+        // cout<< ((s<t)||(s>t)) == 0?"恭喜你,译码和源码完全一样哦":"Sorry,可能长度超出了默认精度范围了哦,有空试试高精度吧"<<endl;
+        // cout<<"\n是否验证下一个字符序列,是则输入,否则输入#:"<<endl;
+        string tstr;
+        tstr += ((s<t)||(s>t)) == 0 ? "恭喜你,译码和源码完全一样哦":"Sorry,可能长度超出了默认精度范围了哦,有空试试高精度吧";
+        cout<<tstr<<"  此时源码长度为: "<<sl<<endl;
         cout<<"\n是否验证下一个字符序列,是则输入,否则输入#:"<<endl;
     }
     return 0;
