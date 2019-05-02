@@ -10,3 +10,5 @@ Yesteday I have no more time to do this,so yesteday I got this idea and I do it 
 
 2019年4月14日22:46:11
 因为计算机设计大赛写了一天的java转c++代码，头都晕了，所以决定以后周日休息，一周六天必须写题
+
+2019年5月2日21:00:29 发现可以直接在本地完成每日文件夹归档到新建立的月文件夹，然后commit提交也是可以的，真好
