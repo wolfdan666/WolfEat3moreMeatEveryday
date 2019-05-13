@@ -31,6 +31,7 @@ char Myhash2[26];
 int XNlen;
 typedef pair<double, pair<double, double>> Node;
 vector<Node> p;
+int l;
 
 void solve(){
     int len = int(source.length());
@@ -95,7 +96,7 @@ void solve(){
         end = be + pos;
         // cout << "be:" << be << " end:" << end << endl;
         // cout << "pos监控: " << pos << endl;
-        int l = ceil(log(1 / pos) / log(2));
+        l = ceil(log(1 / pos) / log(2));
         double tp = 0.01 * be + 0.99 * end;
 
 
