@@ -8,16 +8,6 @@
 
 // 2019年5月16日22:43:17 自己检查了3遍，结果莫名奇妙就是不对...看来这题要9阴真经，5毒肯定搞不定
 // 2019年5月16日23:47:13 真的窒息了，我晚上又检查了好久，但是还是错了，用vscode Debug看看吧
-// 自己复刻了一个这个程序，然后逐个函数用运行正确的第一遍的大佬code替换，找bug
-
-
-// 2019年5月17日00:21:56
-// 由于自己一个不小心+自己对ekmp理解不够+抄个代码都不够认真专注，
-// 导致自己抄完代码还找了2个多小时的bug，下不为例，
-要先多多理解，然后在烂熟于心，因为你不能保证你比赛的时候你的状态就是完美的，
-你一定要保证你的最差劲的状态也能使整个队伍夺金，所以继续加油！继续努力！坚持刷题！
-The master has failed more times than the beginnner has tried!
-
 #include<cstdio>
 #include<cstring>
 #include<algorithm>
@@ -63,42 +53,32 @@ void GetNext(char* T,int l,int r){
     }
 }
 
-void ExtendKMP(char* S,char* T,int l,int r,bool sign){
-    GetNext(T,l,r);
+void ExtendKMP(char* S, char* T, int lhs, int rhs, bool sign)
+{
+    GetNext(T, lhs, rhs);
     int j = 0;
-    while(l+j<=r&&S[l+j]==T[l+j]) ++j;
-    extend[l] = j;
-    int k = l;
-    for(int i = l+1; i<=r ; i++){
-        int p = extend[k] + k -1;
-        int L = nxt[l+i-k];
-        if(L+i<p+1) extend[i] = L;
-        else{
-            j = max(0,p-i+1);
-
-
-
-
-            // while(i+j<=r&&S[i+j]==T[i+j]) j++;
-            while(i+j<=r&&S[i+j]==T[l+j]) j++;
-
-
-
-            extend[i] = j;  // 相当于getfail 的 j = f[j]一样
+    while (j + lhs <= rhs && S[j + lhs] == T[j + lhs]) ++j;
+    extend[lhs] = j;
+    int k = lhs;
+    for (int i = lhs + 1; i <= rhs; ++i)
+    {
+        int p = extend[k] + k - 1;
+        int L = nxt[lhs + i - k];
+        if (L + i < p + 1) extend[i] = L;
+        else
+        {
+            j = max(0, p - i + 1);
+            while (i + j <= rhs && S[i + j] == T[lhs + j]) ++j;
+            extend[i] = j;
             k = i;
         }
     }
-
-    // 一开始漏写了...
-    for(int i = l;i<=r;i++){   // 漏抄个等号 .. 结果错了
-        if(extend[i]==r-i+1){ // 和自己的反串的前缀在某个点开始后面完全相同的话，那么从这个点开始后面就是回文串
+    for (int i = lhs; i <= rhs; ++i)
+    {
+        if (extend[i] == rhs - i + 1)
             flag[sign][i] = true;
-        }
     }
-
-
 }
-
 void Insert(char S[], int l, int r){
     TrieNode* temp = root;
     for(int i = l; i <= r; i++){
@@ -128,7 +108,6 @@ void Search(char S[],int l,int r){
 
 // int main(int argc, char const *argv[]){
 int main(){
-    // printf("%d\n",MAXN );
     int n;
     // while(~scanf("%d",&n)){
     while (scanf("%d", &n) != EOF){
