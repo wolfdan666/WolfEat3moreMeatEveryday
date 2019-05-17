@@ -50,14 +50,12 @@ void EKMP(char *S,char *T,int *next,int *extend)
         j++;
     extend[0]=j;
     k=1;
-    for(int i=1;i<n;i++)
-    {
-        int len=k+extend[k]-1,L=next[i-k];
-        if(L<len-i+1)
+    for(int i=1;i<n;i++){
+        int len=k+extend[k]-1,L=next[i-k];  // 注意这里是next
+        if(L<len-i+1)         // next是T[i]...T[m - 1]与T的最长相同前缀长度
             extend[i]=L;
-        else
-        {
-            j=max(0,len-i+1);
+        else{
+            j=max(0,len-i+1); // 上次已经匹配的位置和现在位置的差值，也就是剩余匹配的长度值
             while(i+j<n && j<n && S[i+j]==T[j])
                 j++;
             extend[i]=j;
@@ -89,12 +87,12 @@ int main()
         {
             int sc=0;//分数
             //求前缀[0,i-1]分数
-            if(extend1[n-i]+n-i==n)
+            if(extend1[n-i]+n-i==n)  // i的长度部分是回文串长，重点记住就是前面的相同匹配量，然后就是滑动着与反串相比
             {
                 sc+= sum[i-1];
             }
             //求后缀[i,n-1]的分数
-            if(extend2[i]+i==n)
+            if(extend2[i]+i==n)  // n-i的部分是回文串长
             {
                 sc+= sum[n-1]-sum[i-1];
             }

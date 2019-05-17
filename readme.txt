@@ -21,3 +21,18 @@ Yesteday I have no more time to do this,so yesteday I got this idea and I do it 
           **五毒法不行就上升九阴真经，再不行就降龙十八掌**
 **The master has failed more times than the beginnner has tried!**
 
+
+五毒法：
+1. 第一遍可以全慢慢理解抄
+2. 第二遍就一个函数一个函数的抄
+3. 第三题看一遍就写全部
+4. 第四遍就只能看思路
+5. 第五遍自己写
+
+六脉神剑
+6. 写成文章
+
+九阴真经
+7.8.9. 再写再精炼文章
+
+降龙十八掌 同理
