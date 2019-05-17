@@ -12,7 +12,7 @@ using namespace std;
 const int MAXN = 5e5 + 10;
 char s[MAXN],t[MAXN];
 int n;
-int next[MAXN],extend[MAXN],extend2[MAXN];
+int mynext[MAXN],extend[MAXN],extend2[MAXN];
 int val[27],sum[MAXN];  // sum是价值前缀和
 
 void ekmp(char* s,char* t,int *next,int *extend){
@@ -88,8 +88,8 @@ int main(int argc, char const *argv[]){
         }
         t[n] = '\0';
 
-        ekmp(t,s,next,extend);
-        ekmp(s,t,next,extend2);
+        ekmp(t,s,mynext,extend);
+        ekmp(s,t,mynext,extend2);
 
         int ans = -1e8;
         // for(int i=1;i<=n;i++){  // extend下标为0的部分一般是不用的
