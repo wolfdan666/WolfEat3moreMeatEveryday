@@ -1,2 +1,6 @@
 # Cpp:
 *.exe
+
+# VScode:
+build
+.vscode

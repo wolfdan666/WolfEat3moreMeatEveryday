@@ -14,9 +14,9 @@
 // 2019年5月17日00:21:56
 // 由于自己一个不小心+自己对ekmp理解不够+抄个代码都不够认真专注，
 // 导致自己抄完代码还找了2个多小时的bug，下不为例，
-要先多多理解，然后在烂熟于心，因为你不能保证你比赛的时候你的状态就是完美的，
-你一定要保证你的最差劲的状态也能使整个队伍夺金，所以继续加油！继续努力！坚持刷题！
-The master has failed more times than the beginnner has tried!
+// 要先多多理解，然后在烂熟于心，因为你不能保证你比赛的时候你的状态就是完美的，
+// 你一定要保证你的最差劲的状态也能使整个队伍夺金，所以继续加油！继续努力！坚持刷题！
+// The master has failed more times than the beginnner has tried!
 
 #include<cstdio>
 #include<cstring>
