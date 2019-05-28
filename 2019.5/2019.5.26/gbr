@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# get start time
+start=$(date +%s%N)
+start_ms=${start:0:16}
+
+# build
+g++ -o $1 $1.cpp
+
+# run
+$1
+
+# get end time
+end=$(date +%s%N)
+end_ms=${end:0:16}
+
+#output
+printf "[Finished in %.1fs]\n" $(echo "scale=1; ($end_ms - $start_ms)/1000000")
