@@ -8,6 +8,8 @@
 // 法二见 ： https://blog.csdn.net/qingshui23/article/details/52154321
 // 借鉴了许多法二
 
+// 2019年5月30日20:16:54自己重写的时候总算debug成功 发现自己原来是自己智障了，忘记了乘以一个幂b
+
 #include <algorithm>
 #include <cstring>
 #include<cstdio>
@@ -17,7 +19,7 @@ using namespace std;
 const int M = 5e7 + 10;
 bool prime[M]; // 防在外面一开始会默认初始化为0
 ll p[M];
-int num[M / 10], fac[M / 10];
+int num[M / 1000], fac[M / 1000];
 int k = 0;
 int mod = 9901;
 int cnt;
@@ -82,20 +84,23 @@ ll getSum(ll p, ll c)
 {
     if(c==0) return 1;
     if (c & 1) {
-        return (1 + mypow(p, ((c + 1) / 2), mod)) * getSum(p, (c - 1) / 2);
+        return (1 + mypow(p, ((c + 1) / 2), mod))%mod * getSum(p, (c - 1) / 2)%mod; // 及时取mod
     }
-    return (1 + mypow(p, c / 2, mod)) * getSum(p, c / 2 - 1) + mypow(p, c, mod);
+    return (1 + mypow(p, c / 2, mod))%mod * getSum(p, c / 2 - 1) + mypow(p, c, mod)%mod;
 }
 
 int main()
 {
+    // cout<<M<<endl;
+
     isPrime();
     ll a, b;
     while (~scanf("%lld%lld", &a, &b)) {
         Dec(a);
         ll ans = 1;
         for (int i = 0; i < cnt;i++){
-            ans = (ans*getSum(fac[i],num[i]))%mod;
+            ans = (ans*getSum(fac[i],num[i]*b))%mod;
+            // cout << "fac[i] " << fac[i] << " num[i] " << num[i]<<" ans "<< ans << endl;
         }
         printf("%lld\n",ans);
     }
