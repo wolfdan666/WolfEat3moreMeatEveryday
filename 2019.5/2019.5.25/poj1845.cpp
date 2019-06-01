@@ -11,8 +11,8 @@
 // 2019年5月30日20:16:54自己重写的时候总算debug成功 发现自己原来是自己智障了，忘记了乘以一个幂b
 
 #include <algorithm>
+#include <cstdio>
 #include <cstring>
-#include<cstdio>
 #include <iostream>
 using namespace std;
 #define ll long long
@@ -82,11 +82,12 @@ void Dec(ll x)
 
 ll getSum(ll p, ll c)
 {
-    if(c==0) return 1;
+    if (c == 0)
+        return 1;
     if (c & 1) {
-        return (1 + mypow(p, ((c + 1) / 2), mod))%mod * getSum(p, (c - 1) / 2)%mod; // 及时取mod
+        return (1 + mypow(p, ((c + 1) / 2), mod)) % mod * getSum(p, (c - 1) / 2) % mod; // 及时取mod
     }
-    return (1 + mypow(p, c / 2, mod))%mod * getSum(p, c / 2 - 1) + mypow(p, c, mod)%mod;
+    return (1 + mypow(p, c / 2, mod)) % mod * getSum(p, c / 2 - 1) + mypow(p, c, mod) % mod;
 }
 
 int main()
@@ -98,15 +99,14 @@ int main()
     while (~scanf("%lld%lld", &a, &b)) {
         Dec(a);
         ll ans = 1;
-        for (int i = 0; i < cnt;i++){
-            ans = (ans*getSum(fac[i],num[i]*b))%mod;
+        for (int i = 0; i < cnt; i++) {
+            ans = (ans * getSum(fac[i], num[i] * b)) % mod;
             // cout << "fac[i] " << fac[i] << " num[i] " << num[i]<<" ans "<< ans << endl;
         }
-        printf("%lld\n",ans);
+        printf("%lld\n", ans);
     }
     return 0;
 }
-
 
 // 法二：
 /*
@@ -222,8 +222,6 @@ Motto:
 //     }
 //     return 0;
 // }
-
-
 
 // 高中生巨佬的分治
 // #include <algorithm>
