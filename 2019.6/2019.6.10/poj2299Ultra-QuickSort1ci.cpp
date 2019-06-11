@@ -16,7 +16,7 @@ void Merge(int l, int mid, int r){
     int i = l, j = mid + 1;
     // for(int k=1;k<=r;k++){
     for(int k=l;k<=r;k++){
-        if(j>r || i <= mid && a[i] <= a[j]) b[k]=a[i++];
+        if(j>r || (i <= mid && a[i] <= a[j])) b[k]=a[i++];
         else b[k]=a[j++],ans += mid - i + 1;//因为左右区间都是有序的，因此a[i]>a[j]说明a[i]~a[mid]都大于a[j]
     }
     for(int k=l;k<=r;k++) a[k]=b[k];
