@@ -36,3 +36,11 @@
 
 
 `f=0,break; // 这样的是报错的`
+
+
+```cpp
+#include<iostream>  // 这个__gcd比自己实现快很多，很好用---注意处理0,0等特例
+#include<algorithm>
+int a=__gcd(+/-20,0);   //=+/-20
+int b=__gcd(0,0);    // =0
+```

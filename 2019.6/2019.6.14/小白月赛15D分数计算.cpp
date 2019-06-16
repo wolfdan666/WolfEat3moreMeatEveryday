@@ -1,5 +1,5 @@
 // 算法太朴素导致超时了！所以应该还是要用素数的？试试从大数开始递减取值--->果然还是不会过
-
+// mdzz没有辗转相除法
 #include<bits/stdc++.h>
 using namespace std;
 #define ll long long
