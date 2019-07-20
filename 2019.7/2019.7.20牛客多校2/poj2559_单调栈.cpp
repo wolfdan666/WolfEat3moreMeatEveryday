@@ -25,7 +25,10 @@ int main(){
         h[n+1] = 0;
         ans = 0;
         int p = 0; s[p] = 0;
-        memset(w,sizeof(w),0);
+
+        /* 发现自己memset写错了也AC了，原来是因为w数组不用init也行 */
+        memset(w,0,sizeof(w));
+        // memset(w,sizeof(w),0);
         /*solve*/
         for(int i = 1;i <= n+1;i++){
             if(i!=n+1) cin>> h[i];
