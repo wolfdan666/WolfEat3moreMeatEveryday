@@ -23,27 +23,27 @@ void solve(int *f){
     f[m+1] = -1;
     for(int i=1;i<=m+1;i++){
         /*等于时是否弹出这需要自己注意一下,就是严不严格单调的选择*/
-        // if(ddz[top]<f[i]) ddz[++top]=f[i],w[top]=1;
-        // else{
-        //     int width = 0;
-        //     /*此处注意要先加宽度*/
-        //     while(top&&f[i]<ddz[top]){ width+=w[top],ans.push_back(ddz[top]*width),ans.push_back(ddz[top]*(width-1));top--;}
-        //     /*我的做法是 : 等于是加入,不严格单调*/
-        //     ddz[++top]=f[i],w[top]=width+1;
-        // }
-        /*推荐下面的方法*/
-        if(ddz[top] <= f[i]) ddz[++top] = f[i];
-        else {
-            int cnt = 0;
-            /*然后这里可以写宽度进行优化*/
-            while(top && ddz[top] > f[i]) {
-                cnt++;
-                ans.push_back(ddz[top] * cnt);
-                top--;
-            }
-            while(cnt--) ddz[++top] = f[i];
-            ddz[++top] = f[i];
+        if(ddz[top]<f[i]) ddz[++top]=f[i],w[top]=1;
+        else{
+            int width = 0;
+            /*此处注意要先加宽度*/
+            while(top&&f[i]<ddz[top]){ width+=w[top],ans.push_back(ddz[top]*width),ans.push_back(ddz[top]*(width-1));top--;}
+            /*我的做法是 : 等于是加入,不严格单调*/
+            ddz[++top]=f[i],w[top]=width+1;
         }
+        /*推荐下面的方法*/
+        // if(ddz[top] <= f[i]) ddz[++top] = f[i];
+        // else {
+        //     int cnt = 0;
+        //     /*然后这里可以写宽度进行优化*/
+        //     while(top && ddz[top] > f[i]) {
+        //         cnt++;
+        //         ans.push_back(ddz[top] * cnt);
+        //         top--;
+        //     }
+        //     while(cnt--) ddz[++top] = f[i];
+        //     ddz[++top] = f[i];
+        // }
     }
 }
 
