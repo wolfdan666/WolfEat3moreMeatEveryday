@@ -55,7 +55,7 @@ int main() {
 
 
 /*
-ldm O(n) 算法
+ldm O(n) 算法--->和标程一样
 */
 
 #include <bits/stdc++.h>
