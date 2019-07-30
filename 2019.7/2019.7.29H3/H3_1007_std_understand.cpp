@@ -5,6 +5,9 @@ change(a[i], to[i], n + 1, 1, n + 1, 1);
 
 2019年7月29日20:25:41 不耗了，明天继续过来，因为已经接近两个小时了
 
+2019年7月30日14:34:20 再来
+2019年7月30日15:18:17 看了队友两人发的解法，感觉标程写的思路还是比较自然一点，所以自己写一下
+
  */
 
 
@@ -42,6 +45,7 @@ void PushUp(int rt)
         number[rt] = number[rt * 2 + 1];
 }
 
+/* 难道上面的number2不用清理？ */
 void build(int l, int r, int rt)
 {
     bz[rt] = 0;
@@ -77,10 +81,13 @@ void pushdown(int rt, int l, int r)
     }
 }
 /* change(1e9, n + 1, n + 1, 1, n + 1, 1); */
+/* 自己重写的时候发现是每次更改的时候递归到叶子节点然后加区间的个数加1 */
 /* change(a[i], to[i], n + 1, 1, n + 1, 1); */
+/* 这里是让to[i]的地方到n+1的区段每个节点的个数值都加1 */
 void change(long long int o, int L, int R, int l, int r, int rt){
     if (L > R)
         return;
+    /* 记录的是一个区间的和，不是每个都加一下 */
     if (l == r) {
         number[rt] += o;
         number2[rt] += 1;
@@ -103,8 +110,7 @@ void change(long long int o, int L, int R, int l, int r, int rt){
     PushUp(rt);
 }
 /*long long int k = query(m - a[i], 1, n + 1, 1); */
-long long int query(long long int k, int l, int r, int rt)
-{
+long long int query(long long int k, int l, int r, int rt){
     if (l == r)
         return number2[rt];
     int mid = (l + r) / 2;
@@ -140,10 +146,11 @@ int main()
         for (int i = 1; i <= n; i++) {
             long long int k = query(m - a[i], 1, n + 1, 1);
             printf("%lld ", i - k);
-			/* 第一个number的叠加有什么意义？ */
-			/* 这里是把比i号元素大的元素都加上a[i]
-			对的，线段树的叶子从左到右的循序和数组从左到右循序一样*/
-			/* 所以number是数值和，number2是数值个数 */
+			/* 第一个number的叠加有什么意义？
+			这里是把比i号元素大的元素都加上a[i]？
+            记录的是一个区间的和，不是每个都加一下
+            (第二天巩固了线段树算法并且再次看了题解之后才发现) */
+			/* 所以number是区间数值和，number2是数值个数 */
             change(a[i], to[i], n + 1, 1, n + 1, 1);
         }
         printf("\n");

@@ -16,6 +16,7 @@
 
 果然是询问出了问题
 2019年7月30日13:40:24 总算在各方帮助下debug完毕，并写出题解，继续努力-->写题解到14点
+[题目](https://www.acwing.com/problem/content/description/246/)
  */
 #include<bits/stdc++.h>
 using namespace std;
