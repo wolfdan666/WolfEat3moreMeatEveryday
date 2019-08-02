@@ -1,3 +1,8 @@
+/*
+暴力算法...
+
+*/
+
 #include<iostream>
 #include<algorithm>
 #include<vector>
