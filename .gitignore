@@ -4,3 +4,7 @@
 # VScode:
 build
 .vscode
+
+# Python
+__pycache__
+*.pyc
