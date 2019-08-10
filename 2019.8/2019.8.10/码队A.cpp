@@ -12,10 +12,20 @@ typedef long long ll;
 typedef pair<int,int> PII;
 const ll mod=1000000007;
 const int inf = 0x3f3f3f3f;
-const int maxn = 1e5+7;
 // head
-char s[maxn],t[maxn];
-int w[maxn];
+ll n,m;
+ll ans;
+
+ll qpow(ll a,ll b){
+    ll tmp = 1;
+    while(b){
+        if(b&1) tmp = (a*tmp)%mod;
+        a = a*a%mod;
+        b>>=1;
+    }
+    return tmp;
+}
+
 
 int main(){
     std::ios::sync_with_stdio(false);
@@ -24,11 +34,14 @@ int main(){
     freopen("data.in", "r", stdin);
     //freopen("data.out", "w", stdout);
     #endif
+    //scanf("%d",&a);
 
-    scanf("%s",s+1);
-    int n = s.length();
-    for(int i = 1;i <= n+1;i++){
-        while()
+    int T;
+    cin>>T;
+    while(T--){
+        cin>>n>>m;
+        ans = qpow(m,n-1);
+        cout<<ans<<endl;
     }
 
     return 0;
