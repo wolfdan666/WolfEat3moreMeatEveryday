@@ -1,11 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+const int M = 1e6+7;
 int n, k;
-/* 1<<20 是 1,048,576‬,也就是1e6的大小的样子*/
-int x[1 << 20], y[1 << 20];
+int x[M], y[M];
 
-void hilbert(int k, vector<tuple<int, int, int>> p) {
+inline void hilbert(int k, vector<tuple<int, int, int>> p) {
     if (p.empty()) return;
     if (k == 0) {
         assert(p.size() == 1);
@@ -15,7 +14,7 @@ void hilbert(int k, vector<tuple<int, int, int>> p) {
         int sz = 1 << (k - 1);
         for (auto pt : p) {
             int id, x, y; tie(id, x, y) = pt;
-            /*各象限依次丢入*/
+            /*各象限依次丢入就能够保证排序了*/
             if (x < sz and y < sz) {
                 q[0].emplace_back(id, y, x);
             } else if (x >= sz and y < sz) {
