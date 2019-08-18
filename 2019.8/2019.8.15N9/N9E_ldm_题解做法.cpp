@@ -11,7 +11,7 @@ int n, m;
 ll ans;
 set<int> st;
 
-void init() {
+inline void init() {
     for(int i = 0; i < maxn; i++) C[i][0] = 1;
     for(int i = 1; i < maxn; i++) {
         for(int j = 1; j < 5; j++) {
@@ -20,9 +20,9 @@ void init() {
     }
 }
 
-int Find(int x) { return x == p[x] ? x : p[x] = Find(p[x]); }
+inline int Find(int x) { return x == p[x] ? x : p[x] = Find(p[x]); }
 
-void Union(int x, int y) {
+inline void Union(int x, int y) {
     int fx = Find(x), fy = Find(y);
     if(fx != fy) {
         if(fx > fy) swap(fx, fy);

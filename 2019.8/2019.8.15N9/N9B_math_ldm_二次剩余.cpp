@@ -1,3 +1,4 @@
+/*数学题暂时不补先2019年8月16日17:30:46*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

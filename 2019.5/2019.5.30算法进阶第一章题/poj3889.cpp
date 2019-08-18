@@ -9,6 +9,7 @@
 // %.0f 是输出 float 型或 double 型数据，按定点格式，小数点以下占0位  ,但是会四舍五入
 // 现在又出了tle的幺蛾子...
 
+/*奇怪,,,牛客交这个代码只能过30%???*/
 
 #include<iostream>
 #include<algorithm>

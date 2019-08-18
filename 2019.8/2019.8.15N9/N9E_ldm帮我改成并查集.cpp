@@ -1,3 +1,9 @@
+/*
+错误原因，团里面的size是相乘的，而我直接相加了...
+
+*/
+
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
