@@ -1,15 +1,3 @@
-/*
-2019年8月6日12:44:24 开始看题
-
-求出所有字串中第k小的，但是我还是不会怎么巧妙地求出所有本质不同的字符串...
-后缀数组忘了...zkq问我的...既然说看看，那就认真看看
-
-后缀数组忘光了，于是粗略地补一下后缀数组补到了2019年8月6日14:23:58 ...
-在怀疑只用后缀数组真的能做？我找到的答案好像都用了LCP(最长公共前缀)
-中途发呆了25mins，2019年8月6日15:05:11 现在继续...
-
-*/
-
 #include<bits/stdc++.h>
 using namespace std;
 const int maxn=100010;
@@ -56,13 +44,6 @@ void getheight(int n){
 
 void process(){
     memset(sum,0,sizeof(sum));
-    /*sa[i]表示排名为i的后缀的起始位置的下标
-    所以n-sa[i]是后缀长度...
-    height[i]是sa[i-1]和sa[i]的最长公共前缀*/
-    /*jujuz:height数组有个性质，len-sa[i]-height[i]是每个后缀字符串所能贡献的不同子串数目--->这里要综合起来看*/
-    /*所以这里是从排名大到小(字典序小到大)的字串累加贡献的字串数目(因为自己字典序最小,所以其字串就更小!)*/
-
-    /*综合来说: sum[i]就是i后缀中的字串个数,也是i后缀字符串的长度*/
     sum[1]=n-sa[1];
     for(int i=2;i<=n;i++)
         sum[i]=sum[i-1]+n-sa[i]-height[i];
@@ -74,16 +55,16 @@ void solve(){
     process();
     while(q--){
         LL v;
-        // scanf("%I64d",&v);
         scanf("%lld",&v);
         LL k=(l^r^v)+1;
+        /*获取有第k排名的不同字符的起始位置(sum见process函数)*/
         int pos=lower_bound(sum+1,sum+1+n,k)-sum;
-        /*减掉前k-1小的,就是第k小的长度,然后再用n减去第k小的长度,即为第k小的位置*/
+        /*因为每个串都是  后缀 所以sum[pos]-(k-1)就能得到第k个起始的后缀长度！
+        然后用n减去,就是k起始的位置！
+        (字符串下标从0开始,可以用k=1,来模拟理解一遍) */
         LL tl=sa[pos],tr=n-(sum[pos]-k+1);
         l=tl,r=tr;
         int len=tr-tl+1;
-        /*看另一个大佬的blog说这是数据弱了才能这样暴力过
-        其实应该用RMQ的...*/
         while(pos+1<=n&&height[pos+1]>=len){
             pos++;
             tl=sa[pos],tr=tl+len-1;

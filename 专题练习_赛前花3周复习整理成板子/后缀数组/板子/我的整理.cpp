@@ -1,4 +1,13 @@
-int wa[maxn],wb[maxn],wv[maxn],ws[maxn];
+/*
+板子声明 :
+1. r从0开始,而非像oi-wiki中的从1开始
+2. [build使用 n + 1 , calheight 使用 n ](https://www.wolfdan.cn/2019/08/21/%E7%AE%97%E6%B3%95%E6%97%A5%E5%B8%B8-16-100/)
+
+*/
+
+int sa[maxn],wa[maxn],wb[maxn],wv[maxn],ws[maxn];
+/*LCP:最长公共字串部分*/
+int rank[maxn],height[maxn];
 
 /*r为字符串数组,sa是后缀数组,n为字符串长度,m为字符种类数*/
 void da(int *r,int *sa,int n,int m){
@@ -11,10 +20,8 @@ void da(int *r,int *sa,int n,int m){
     for(j=1,p=1;p<n;j*=2,m=p){
         for(p=0,i=n-j;i<n;i++) y[p++]=i;
         for(i=0;i<n;i++) if(sa[i]>=j) y[p++]=sa[i]-j;
-
-        /*这一行oi-wiki没有,不知道有什么用*/
+        /*提取第一关键字*/
         for(i=0;i<n;i++) wv[i]=x[y[i]];
-
         for(i=0;i<m;i++) ws[i]=0;
         for(i=0;i<n;i++) ws[wv[i]]++;
         for(i=1;i<m;i++) ws[i]+=ws[i-1];
@@ -25,11 +32,6 @@ void da(int *r,int *sa,int n,int m){
     }
     return;
 }
-
-
-
-/*LCP:最长公共字串部分*/
-int rank[maxn],height[maxn];
 
 /*r为字符串数组,sa是后缀数组,n为字符串长度*/
 void calheight(int *r,int *sa,int n){

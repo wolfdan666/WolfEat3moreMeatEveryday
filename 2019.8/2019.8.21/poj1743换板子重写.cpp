@@ -1,21 +1,21 @@
 /*
-2019年8月20日19:30:03开始看题
+2019年8月21日10:33:40 换了板子还是RE!
 
-因为是从后缀数组专题找的，所以知道用后缀数组和二分，
-不过还是有点挑战性，那就干起来吧
+da要加一个位置的字符,让它比所有的字符都小
+然而calheight却不要...就是因为这个RE了..
 
-完蛋,好久没写二分,连2分通用板子都不会写了...
+然后仍然wa了...
 
-2019年8月20日21:24:06 参考了别人的代码，
-发现自己没有考虑声调的升降问题！
+最后发现是check函数又使用了sa!所以就是它那里的n要用最开始的n
+所以就只有getheight要用n-1
 
-2019年8月20日21:51:35 自己卡在了那个height数组意义上，所以
-check函数的理解以及ans+1的理解一直过不去...
+因为getheight中的最后一个sa的rank是没有用的,所以直接让n-1代入就行？
+应该确实是这样的
 
-有点晕 --> 先去跑步放松一下吧
-然后跑步过程真的想明白了！一个点
+2019年8月21日11:31:45 还是不太理解为啥可以这样...为啥check要n+1??????????
+那个被我hack的AC代码的check没有n+1...
 
-
+因为你check用了sa[0]..以及for用的是'' < ''
 */
 
 #include<cstring>
@@ -26,44 +26,49 @@ typedef long long ll;
 const ll mod=1000000007;
 const int inf = 0x3f3f3f3f;
 const int maxn = 20010;
-int sa[maxn],height[maxn],rank[maxn],t[maxn],t2[maxn],c[maxn];
+int sa[maxn];
 int n;
 int str[maxn];
 
-void build_sa(int m,int n){
-    int *x=t,*y=t2;
-    for(int i=0;i<m;i++)c[i]=0;
-    for(int i=0;i<n;i++)c[x[i]=str[i]]++;
-    for(int i=1;i<m;i++)c[i]+=c[i-1];
-    for(int i=n-1;i>=0;i--)sa[--c[x[i]]]=i;
-    for(int k=1;k<=n;k<<=1){
-        int p=0;
-        for(int i=n-k;i<n;i++)y[p++]=i;
-        for(int i=0;i<n;i++)if(sa[i]>=k)y[p++]=sa[i]-k;
-        for(int i=0;i<m;i++)c[i]=0;
-        for(int i=0;i<n;i++)c[x[y[i]]]++;
-        for(int i=1;i<m;i++)c[i]+=c[i-1];
-        for(int i=n-1;i>=0;i--)sa[--c[x[y[i]]]]=y[i];
-        swap(x,y);
-        x[sa[0]]=0;p=1;
-        for(int i=1;i<n;i++)
-            x[sa[i]]=(y[sa[i-1]]==y[sa[i]]&&y[sa[i-1]+k]==y[sa[i]+k]?p-1:p++);
-        if(p>=n)break;
-        m=p;
+int wa[maxn],wb[maxn],wv[maxn],ws[maxn];
+int cmp(int *r,int a,int b,int l){return r[a]==r[b]&&r[a+l]==r[b+l];}
+
+void da(int *r,int *sa,int n,int m){
+    int i,j,p,*x=wa,*y=wb,*t;
+    for(i=0;i<m;i++) ::ws[i]=0;
+    for(i=0;i<n;i++) ::ws[x[i]=r[i]]++;
+    for(i=1;i<m;i++) ::ws[i]+=::ws[i-1];
+    for(i=n-1;i>=0;i--) sa[--::ws[x[i]]]=i;
+    for(j=1,p=1;p<n;j*=2,m=p){
+        for(p=0,i=n-j;i<n;i++) y[p++]=i;
+        for(i=0;i<n;i++) if(sa[i]>=j) y[p++]=sa[i]-j;
+        for(i=0;i<n;i++) wv[i]=x[y[i]];
+        for(i=0;i<m;i++) ::ws[i]=0;
+        for(i=0;i<n;i++) ::ws[wv[i]]++;
+        for(i=1;i<m;i++) ::ws[i]+=::ws[i-1];
+        for(i=n-1;i>=0;i--) sa[--::ws[wv[i]]]=y[i];
+        for(t=x,x=y,y=t,p=1,x[sa[0]]=0,i=1;i<n;i++)
+        x[sa[i]]=cmp(y,sa[i-1],sa[i],j)?p-1:p++;
     }
+    for(int i = 0 ;i<n;i++) cout<<sa[i]<<" "; cout<<endl;
+    return;
 }
 
-void getheight(int n){
-    int k=0;
-    for(int i=1;i<=n;i++)::rank[sa[i]]=i;
-    for(int i=0;i<n;i++){
-        if(k)k--;
-        int j=sa[::rank[i]-1];
-        while(str[i+k]==str[j+k])k++;
-        height[::rank[i]]=k;
-    }
-}
 
+
+/*LCP:最长公共字串部分*/
+int rank[maxn],height[maxn];
+
+/*r为字符串数组,sa是后缀数组,n为字符串长度*/
+void calheight(int *r,int *sa,int n){
+    int i,j,k=0;
+    /*用sa[]得到rank[]*/
+    for(i=1;i<=n;i++) ::rank[sa[i]]=i;
+    /*j就是后缀i的前一名的后缀位置,然后如果前一个串之间有k,那么就从k--起步*/
+    for(i=0;i<n;height[::rank[i++]]=k)
+    for(k?k--:0,j=sa[::rank[i]-1];r[i+k]==r[j+k];k++);
+    return;
+}
 bool check(int c){
     int Max=sa[0],Min=sa[0];
     for(int i=1;i<n;i++){
@@ -107,14 +112,16 @@ int main(){
         for(int i=0;i<n;i++) cin>>str[i];
         for(int i=0;i<n-1;i++) str[i]=str[i+1]-str[i]+90;
         /*因为转变差值了，所以少一个值,但是后缀数组要加一个位置，所以不用n--*/
-        str[n-1]=0;n--;
+        str[n-1]=0;//n--;
         // for(int i=0;i<=n-1;i++) cout<<str[i]<<" "; cout<<endl;
 
         /*da要加一个位置的字符,让它比所有的字符都小
         然而calheight却不要...就是因为这个RE了..*/
-        build_sa(178,n+1);
-        getheight(n);
+        da(str,sa,n,178);
+        calheight(str,sa,n-1);
         int l=0,r=n+1,ans=0;
+
+
         while(l<=r){
             int mid=(l+r)>>1;
             if(check(mid)) l=mid+1,ans=mid;

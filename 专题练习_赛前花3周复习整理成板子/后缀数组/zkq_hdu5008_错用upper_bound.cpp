@@ -114,6 +114,10 @@ int main()
             int lenth = height[pos] + (k - sum[pos - 1]);// 排名第k的子串的长度
             //printf("lenth:%d\n", lenth);
             //找公共前缀长度第一个小于lenth的,若都>=lenth,flow = len，height[len] >= lenth
+
+
+            /*2019年8月22日18:40:53 和zkq说了这个问题，这里的height是非单调递减的...*/
+
             int flow = upper_bound(height + 1 + pos, height + 1 + len, lenth, greater<int>()) - (height + 1);
            // printf("flow:%d\n", flow);
             if(flow < pos) swap(flow, pos);
