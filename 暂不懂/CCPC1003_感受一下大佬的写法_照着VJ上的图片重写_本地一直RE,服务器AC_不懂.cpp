@@ -1,3 +1,15 @@
+/*
+昨天抄写这个板子都花了一个小时，而且还错了...
+这要是正式赛就凉了！
+
+...昨天抄写一小时，debug一小时，今天白天又debug一小时，还是RE
+2019年8月24日10:24:10 自闭...再继续吧
+
+
+下午交到服务器，AC...
+然而自己在本地一直RE..
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -103,7 +115,7 @@ int query_1(int p,int r, ll x){
     }
     int res = query_1(p*2,r,x), mid = (t[p].l + t[p].r) / 2;
     if(mid>=r) return res;
-    /*else if(mid<r) */return max(res,query_1(p*2+1,r,x));
+    else if(mid<r) return max(res,query_1(p*2+1,r,x));
 }
 
 /* [l,n] x*/
@@ -118,7 +130,7 @@ int query_2(int p,int l,ll x){
     }
     int res = query_2(p*2+1, l, x), mid = (t[p].l + t[p].r) / 2;
     if(mid < l) return res;
-    /*else if(mid >= l) */return min(res, query_2(p*2, l, x));
+    else if(mid >= l) return min(res, query_2(p*2, l, x));
 }
 
 int main(){
@@ -144,8 +156,10 @@ int main(){
                 else curr--;
             }
             bool ok = 1;
-            /*这里curl错写成curr,害我检查了一遍全部*/
-            if(curr == -1) curl = 1;
+            /*这里第二个curl错写成curr,害我检查了一遍全部*/
+
+            /*2019年8月24日10:13:09(第二天)发现第一个curl也害我..*/
+            if(curl == -1) curl = 1;
 
             if(curr - curl + 1 < k) ok = 0;
             if(ok){
