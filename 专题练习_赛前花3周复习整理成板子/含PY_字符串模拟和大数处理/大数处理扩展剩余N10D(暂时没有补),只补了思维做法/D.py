@@ -1,3 +1,5 @@
+# 自己以前按照cpp瞎改的
+
 def gcd(a,b):
     if b==0:
         return a
