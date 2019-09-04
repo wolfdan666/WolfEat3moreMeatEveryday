@@ -1,5 +1,7 @@
 /*
 2019年9月3日20:44:23 开始看
+2019年9月4日11:39:03 再看
+主席树+SAM都是刚刚学了一点点皮毛，然后就要接受这种魔鬼题目训练，真是毒打
 
 题意:
 T组,N次询问,  l,r这个子串的第k次出现
@@ -44,9 +46,16 @@ int root[200010],num;
 也就是只要19e5===>也可以直接n << 5 ,即(2^5)*n    */
 struct Q{
     int L,R,sum;
-}A[8000000];
+} A[8000000];
 
+/*
+pos[i]=p;---> pos数组作用暂时是未知的
+update(root[p],1,n,i,1);
+*/
 void update(int &x,int l,int r,int k,int v){
+    /*下面三句话就是1. 获取之前的节点(之前也可能是空节点)信息
+    2. 让当前的root[]等于新得到的id(sum)_3.然后在这个id上进行玩耍*/
+    /*总体上就是记录一条新建的边上的所有信息,最主要的是维护权值--为了求出第k大*/
     A[++num]=A[x];
     x=num;
     A[x].sum++;
@@ -55,10 +64,12 @@ void update(int &x,int l,int r,int k,int v){
     if(k<=mid) update(A[x].L,l,mid,k,v);
     else update(A[x].R,mid+1,r,k,v);
 }
+/*root[u]=mer(root[u],root[v],1,n);*/
 int mer(int a,int b,int l,int r){
     if(a==0||b==0) return a+b;
     int z=++num,mid=(l+r)/2;
     if(l==r){
+        /*这里的操作没有看懂..*/
          A[z].sum=A[a].sum|A[b].sum;
          return z;
     }
@@ -67,6 +78,11 @@ int mer(int a,int b,int l,int r){
     A[z].sum=A[A[z].L].sum+A[A[z].R].sum;
     return z;
 }
+/*
+u=qkth(root[p],1,n,a);
+printf("%d\n",u-k+1);
+返回的是endpos值...也就是返回的是串的右端点...也就是说答案是u-k+1
+*/
 int qkth(int x,int l,int r,int k){
     if(l==r) return l;
     int mid=(l+r)/2;
@@ -76,17 +92,20 @@ int qkth(int x,int l,int r,int k){
 
 vector<int>g[200010];
 int Fa[200010][25],pos[200010];
+/*dfs(1)*/
 void dfs(int u){
     int i,v;
+    /*这里i为什么是<=19?...
+    这里的大的Fa不是sam中的fa*/
     for(i=1;i<=19;i++) Fa[u][i]=Fa[Fa[u][i-1]][i-1];
     for(i=0;i<g[u].size();i++){
         v=g[u][i];
+        /*v的直接父亲是u...*/
         Fa[v][0]=u;
         dfs(v);
         root[u]=mer(root[u],root[v],1,n);
     }
 }
-
 
 int main(){
     int i,m,t;
@@ -109,7 +128,9 @@ int main(){
         /*插入构建主席树*/
         for(i=1;s[i];i++){
             v=s[i]-'a';
+            /*p就是转移之后的节点啊，所以就是说每个节点在主席树上都是一棵新树*/
             p=T[p][v];
+            /*对，pos就是endpos，转移就是转移到下一个状态*/
             pos[i]=p;
             update(root[p],1,n,i,1);
         }
@@ -119,8 +140,15 @@ int main(){
         int l,r,k,u,a;
         while(m--){
             scanf("%d%d%d",&l,&r,&a);
+            /*获取endpos为r的状态点*/
             p=pos[r];
+            /*这里的k竟然是长度...*/
             k=r-l+1;
+            /*为啥又是19,这个是哪来的数字！==>难道说是一个log(n)的大小！好像是！
+            那么这里的意思应该就是: 找出最短的长度大于要求的字串长的后缀
+            然后如果对应的节点的权值不够a(其实就是题中说的k),那么直接输出-1
+            否则就去主席树中找出答案，所以dfs(1)应该就是从源点出发找到终止节点之类的操作
+            */
             for(i=19;i>=0;i--) if(len[Fa[p][i]]>=k) p=Fa[p][i];
             if(a>A[root[p]].sum) printf("-1\n");
             else{
