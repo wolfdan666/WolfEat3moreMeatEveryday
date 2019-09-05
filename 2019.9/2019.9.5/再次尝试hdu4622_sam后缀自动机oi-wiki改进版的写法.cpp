@@ -1,19 +1,9 @@
 /*
-为什么不要用这个板子？
+改成scanf和unordered_map还是会TLE！==>怎么回事
 
-2019年9月4日22:15:02 的 HDU4622来告诉你
+自建next hash函数才过的！看了unordered_map也慢的一批...
 
-发现oi-wiki的板子不仅  sz没有清零，连next都没有清零，导致我debug 2小时(好吧,是我太菜)
-然后还因为使用的map,直接tle了...所以再也不想用这个板子了
-
-去oi-wiki提交意见去了
-
-1. **建议sam_init将sz清理，并且在init和cur构建的时候清空map！**（菜鸡debug一题两小时）
-2. **建议不要使用map**(菜鸡debug完又TLE了)
-
-
-2019年9月5日13:42:54 改成unordered_map也TLE...
-
+前缀里面新产生的后缀个数..
 */
 
 
@@ -26,7 +16,8 @@ const int MAXLEN = 2010;
 int T,ans[MAXLEN][MAXLEN],tp;
 struct state {
   int len, link;
-  std::unordered_map<char, int> next;
+  // std::unordered_map<char, int> next;
+  int next[26];
 };
 state st[MAXLEN * 2];
 int sz, last;
@@ -34,7 +25,8 @@ int sz, last;
 void sam_init() {
   st[0].len = 0;
   st[0].link = -1;
-  if(!st[0].next.empty()) st[0].next.clear();
+  // if(!st[0].next.empty()) st[0].next.clear();
+  memset(st[0].next,0,sizeof st[0].next);
   /*这个破板子，sz不清零.
 
   还有next没有清零啊啊啊啊,这个破板子,太坑了...*/
@@ -44,12 +36,14 @@ void sam_init() {
   tp = 0;
 }
 
-int sam_extend(char c) {
+int sam_extend(int c) {
   int cur = sz++;
   st[cur].len = st[last].len + 1;
-  if(!st[cur].next.empty()) st[cur].next.clear();
+  // if(!st[cur].next.empty()) st[cur].next.clear();
+  memset(st[cur].next,0,sizeof st[cur].next);
   int p = last;
-  while (p != -1 && !st[p].next.count(c)) {
+  // while (p != -1 && !st[p].next.count(c)) {
+  while (p != -1 && !st[p].next[c]) {
     st[p].next[c] = cur;
     p = st[p].link;
   }
@@ -62,7 +56,8 @@ int sam_extend(char c) {
     } else {
       int clone = sz++;
       st[clone].len = st[p].len + 1;
-      st[clone].next = st[q].next;
+      // st[clone].next = st[q].next;
+      for(int i=0;i<26;i++) st[clone].next[i] = st[q].next[i];
       st[clone].link = st[q].link;
       while (p != -1 && st[p].next[c] == q) {
         st[p].next[c] = clone;
@@ -77,24 +72,32 @@ int sam_extend(char c) {
 }
 
 int main(){
-    ios::sync_with_stdio(false);cin.tie(0);
-    cin>>T;
+    // ios::sync_with_stdio(false);cin.tie(0);
+    // cin>>T;
+    scanf("%d",&T);
     while(T--){
-        string s;int n;
-        cin>>s>>n;
-        int len = s.length();
+        // string s;
+        char s[MAXLEN];
+        int n;
+        scanf("%s",s);
+        scanf("%d",&n);
+        // cin>>s>>n;
+        // int len = s.length();
+        int len = strlen(s);
         for(int i=0;i<len;i++){
             sam_init();
             for(int j=i;j<len;j++){
-                ans[i][j] = sam_extend(s[j]);
+                ans[i][j] = sam_extend(s[j]-'a');
             }
         }
         // for(int i = 0;i<len;++i){for(int j = i;j<len;++j) cout<<ans[i][j]; cout<<endl;}
         while(n--){
             int l,r;
-            cin>>l>>r;
+            // cin>>l>>r;
+            scanf("%d%d",&l,&r);
             l--,r--;
-            cout<<ans[l][r]<<endl;
+            // cout<<ans[l][r]<<endl;
+            printf("%d\n",ans[l][r] );
         }
     }
 
