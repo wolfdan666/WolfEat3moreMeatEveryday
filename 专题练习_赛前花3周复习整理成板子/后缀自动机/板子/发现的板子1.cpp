@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 const int N=250010;
-char s1[N];
+char s[N];
 int ans;
 struct sam{
     // 注意N是题目给的n的两倍,因为节点数最多有2*n-1个
