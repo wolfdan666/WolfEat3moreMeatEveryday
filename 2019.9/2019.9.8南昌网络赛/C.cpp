@@ -8,7 +8,7 @@ Codeforces 750 E -- 2600分 , lxc 7分钟一血带偏榜 最后2019年9月8日16
 
 参考大佬:https://blog.splayx.com:10443/?p=385
 */
-#include<bits/stdc++.h>
+/*#include<bits/stdc++.h>
 using namespace std;
 typedef long long LL;
 const int maxn = 2e5 + 5;
@@ -23,7 +23,7 @@ struct node{
         node c;
         for(int i = 0; i < 5; i++)
             for(int j = i; j < 5; j++)
-                // 查看两者之间各种状态的转化需要删除的字符数
+                // 查看两者之间各种状态的转化(i->j)需要删除的字符数
                 for(int k = i; k <= j; k++) c.dp[i][j] = min(c.dp[i][j], dp[i][k] + b.dp[k][j]);
         return c;
     }
@@ -33,6 +33,7 @@ char s[maxn];
 void build(int id, int L, int R){
     if(L == R){
         for(int i = 0; i < 5; i++) tree[id].dp[i][i] = 0;
+        // 若非2,0,1,7,6 则直接使用初始化的MAX_INT就行...
         if(s[L] == '2'){
             // 0状态到达状态1只要删除0个
             tree[id].dp[0][1] = 0;
@@ -86,12 +87,12 @@ int main(){
         else printf("%d\n", (int)ret);
     }
     return 0;
-}
+}*/
 
 
 // 下面是代码二
 
-/*
+
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -159,4 +160,4 @@ int main() {
         }
     }
     return 0;
-}*/
+}
