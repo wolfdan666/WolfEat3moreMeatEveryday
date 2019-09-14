@@ -10,6 +10,26 @@
 
 mdzz 没有考虑数据范围---> 结果还是wa了...
 debug 50mins ，pass，做字符串去
+
+晚上19点17分拍出来了一份数据
+7 15
+1 6
+6 6
+7 54
+8 24
+8 51
+2 14
+5 42
+
+my  3 18 .  std  3  20
+
+
+傻逼了......原来可以混合购买
+所以应该是要用背包的
+我这个代码只考虑了买一种的策略.而完全背包考虑了混合购买
+
+
+所以说还是要多踩坑...这个是个水题...不要发算法日常！
 */
 
 #include<bits/stdc++.h>
@@ -34,7 +54,7 @@ int main(){
         tp = {p,c};
         mi = ceil(1.0*m/c)*p;
 
-        // cout<<"mi: "<<mi<<" c: "<<tp.se<<" p: "<<tp.fi<<endl;
+        cout<<"mi: "<<mi<<" c: "<<tp.se<<" p: "<<tp.fi<<endl;
 
         for(int i=1;i<n;i++){
             cin>>p>>c;
@@ -47,7 +67,7 @@ int main(){
                 }
             }
 
-            // cout<<"mi: "<<mi<<" c: "<<tp.se<<" p: "<<tp.fi<<endl;
+            cout<<"mi: "<<mi<<" c: "<<tp.se<<" p: "<<tp.fi<<endl;
 
         }
         // ans = mi/tp.fi*c;

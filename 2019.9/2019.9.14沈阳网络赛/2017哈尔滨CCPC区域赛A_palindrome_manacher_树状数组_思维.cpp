@@ -12,6 +12,8 @@
 找到一对(i,j),满足i−Len[i]+1<=j<i且j+Len[j]−1>=i
 可以用主席树来维护，更简单的方法就是
 将j+Len[j]−1按升序排列,然后对于j丢到树状数组里查询贡献就好了。
+
+借鉴大佬:https://www.cnblogs.com/jiachinzhao/p/7826271.html
 */
 
 
@@ -66,12 +68,15 @@ int main(){
        int len = strlen(s + 1);
        R = len;
        for(int i = 1;i <= R;i++) tr[i] = 0;
+       // 这下面两行相当于自建有序的map
        for(int i = 1;i <= len;i++) q[i] = node(i, i + Len[i] - 1);
        sort(q + 1, q + len + 1);
        int l = 1;
        LL ans = 0;
        for(int i = len;i >= 1;i--){
+            // j+Len[j]−1>=i
             while(l <= len && q[l].l >= i) up(q[l++].x);
+            // i−Len[i]+1<=j<i ( 收获这里面的所有满足的j选项 )
             ans += getsum(i - 1) - getsum(i - Len[i]);
        }
        printf("%lld\n",ans);
