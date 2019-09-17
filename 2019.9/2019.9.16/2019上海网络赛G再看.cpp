@@ -32,21 +32,8 @@ int ans[N];
 ull fac[N];
 
 int clk;
-/*
-namespace Hash {
-    const int hashmod = 1635947;
-    int v[hashmod];
-    ull h[hashmod];
-    bool vis[hashmod];
-    int &get(unsigned long long S) {
-        int t2 = S%hashmod, i;
-        for (i = t2; vis[i]==clk&&h[i]!=S; i = (i + 1) % hashmod);
-        if (vis[i]!=clk) h[i] = S, vis[i] = clk, v[i] = 0;
-        return v[i];
-    }
-};
-*/
 
+// 手写的Hash,因为unorder_map<int,int> f[26][26]被卡时间
 namespace Hash{
   const int hashmod = 218357;
   int v[hashmod];
@@ -54,7 +41,11 @@ namespace Hash{
   int vis[hashmod];
   int &get(unsigned long long S) {
     int t2 = S % hashmod, i;
+    // vis[i]是访问过的(clk恒为1)，所以也要走下一个
+    // h[i] = S.则发生了hash crash(哈希碰撞)，就要走到下一个，也就是h[i] != S 走下一个
+    // i = t2-1说明走了一个轮回了，就不用再走了，再走就是重复走t2位置了,所以i!=t2-1
     for (i = t2; vis[i]==clk && h[i] != S && i != t2 - 1; i = (i + 1) % hashmod);
+    // 从未访问过的要初始化计数值为0
     if (vis[i]!=clk) h[i] = S, vis[i] = clk, v[i] = 0;
     return v[i];
   }
@@ -88,11 +79,15 @@ void solve() {
         ++clk;
         for (int L=1,R=len; R<=n; ++L,++R) {
             ++Hash::get(sta);
+            // 左边字符基底为一个fac,而右边为fac^0=1
             sta = sta+(s[L+1]-s[L])*fac[1];
             sta = sta+(ll)(s[R+1]-s[R]);
+            // 下面是右移一位整体的字母表的hash值变化
             sta = sta-fac[27-(s[L]-'a')];
             sta = sta+fac[27-(s[R+1]-'a')];
         }
+        // 这个t长度下,把各次提问的ans更新
+        // hash是这个头尾相同，中间的串是不同排列的  询问串(key) ————> 原串中的个数(value)
         for (auto &&t:g[len]) ans[t.id] = Hash::get(t.sta);
     }
     rep(i,1,m) printf("%d\n",ans[i]);

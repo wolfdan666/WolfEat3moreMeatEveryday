@@ -1,16 +1,4 @@
-#include <iostream>
-#include <sstream>
-#include <algorithm>
-#include <cstdio>
-#include <cmath>
-#include <set>
-#include <map>
-#include <queue>
-#include <string>
-#include <cstring>
-#include <bitset>
-#include <functional>
-#include <random>
+#include<bits/stdc++.h>
 #define REP(i,a,n) for(int i=a;i<=n;++i)
 #define PER(i,a,n) for(int i=n;i>=a;--i)
 #define hr putchar(10)
@@ -60,7 +48,6 @@ struct node {
     int sta,id;
 };
 vector<node> g[N];
-#include <unordered_map>
 unordered_map<int,int> f[26][26];
 int ans[N],fac[N];
 
