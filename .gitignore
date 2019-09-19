@@ -1,10 +1,40 @@
-# Cpp:
-*.exe
+# # Cpp:
+# *.exe
 
-# VScode:
-build
-.vscode
+# # VScode:
+# build
+# .vscode
 
-# Python
-__pycache__
-*.pyc
+# # Python
+# __pycache__
+# *.pyc
+
+
+# 2019年09月19日22:30:03 为了linux不上传二进制文件而更新
+
+## 忽略所有文件和目录
+*
+
+## 增加指定扩展名文件和Makefile文件
+### C && makefile
+!*.cpp
+!*.c
+!*.h
+!Makefile
+
+### py
+!*.py
+
+### md
+!*.md
+
+### pic
+!*.png
+!*.jpg
+
+### some others
+!*.sh
+!*.bat
+!*.gitignore
+
+
