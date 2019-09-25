@@ -60,6 +60,7 @@ int main() {
     REP(i,1,n) f[i].b=rd();
     ll ans = 0;
 set<int> ss;
+    // 这里是O($n^2$$log_n$)的
     for (auto t:s) if (t.y>=2) {
         ll ret = 0;
         REP(i,1,n) {
