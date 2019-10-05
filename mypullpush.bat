@@ -1,4 +1,4 @@
-﻿# git pull suanfa master
+﻿# git pull suanfa master前面乱码去不掉的被迫之举
 git pull suanfa master
 git add --all
 git commit -m "%date%"
