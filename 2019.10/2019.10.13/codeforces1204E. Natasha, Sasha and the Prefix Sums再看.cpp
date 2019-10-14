@@ -49,7 +49,8 @@ int main(){
 		rep(j,0,m){
 			if(i==0) k[i][j] = 1;
 			else if(i > j) k[i][j] = 0;
-			else k[i][j] = k[i-1][j] + k[i][j-1];
+			// else k[i][j] = k[i-1][j] + k[i][j-1];
+			else k[i][j] = (k[i-1][j] + k[i][j-1])%mod;
 		}
 	}
 	rep(i,0,n){
