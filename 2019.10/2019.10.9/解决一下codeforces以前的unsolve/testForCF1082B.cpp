@@ -24,6 +24,6 @@ int main(){
 		else tp=0;
 	}
 	cout<<ans<<endl;
-	
+
     return 0;
 }
