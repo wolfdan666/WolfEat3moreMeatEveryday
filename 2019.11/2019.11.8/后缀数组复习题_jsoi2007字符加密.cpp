@@ -1,13 +1,24 @@
 /*
-板子声明 :
-1. str从0开始,而非像oi-wiki中的从1开始
-2. [build使用 n + 1 , calheight 使用 n ](https://www.wolfdan.cn/2019/08/21/%E7%AE%97%E6%B3%95%E6%97%A5%E5%B8%B8-16-100/)
+RE两个测试集...
 
 */
 
 #include<bits/stdc++.h>
 using namespace std;
-const int maxn=100010;
+typedef long long ll;
+#define rep(i, a, b) for(int i = int(a); i <= int(b); ++i)
+#define per(i, b, a) for(int i = int(b); i >= int(a); --i)
+#define mem(x, y) memset(x, y, sizeof(x))
+#define SZ(x) x.size()
+#define mk make_pair
+#define pb push_back
+#define fi first
+#define se second
+const ll mod=1000000007;
+const int inf = 0x3f3f3f3f;
+inline int rd(){char c=getchar();int x=0,f=1;while(c<'0'||c>'9'){if(c=='-')f=-1;c=getchar();}while(c>='0'&&c<='9'){x=x*10+c-'0';c=getchar();}return x*f;}
+inline ll qpow(ll a,ll b){ll ans=1%mod;for(;b;b>>=1){if(b&1)ans=ans*a%mod;a=a*a%mod;}return ans;}
+const int maxn=200010;
 int sa[maxn],height[maxn],rank[maxn],t[maxn],t2[maxn],c[maxn];
 int n;
 char str[maxn];
@@ -44,4 +55,25 @@ void getheight(int n){
         while(str[i+k]==str[j+k])k++;
         height[::rank[i]]=k;
     }
+}
+
+int main(){
+    scanf("%s",str);
+    int n = strlen(str);
+    rep(i,n,2*n-1) str[i]=str[i-n]; str[2*n]='\0';
+
+    // cout<<str<<endl;
+
+    n <<= 1;
+    build_sa(257,n+1);
+    getheight(n);
+    int tp = n>>1;
+    rep(i,1,n){
+        if(sa[i]<tp){
+            printf("%c", str[sa[i]+tp-1]);
+        }
+    }
+
+
+    return 0;
 }

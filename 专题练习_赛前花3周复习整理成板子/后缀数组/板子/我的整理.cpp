@@ -2,6 +2,7 @@
 板子声明 :
 1. r从0开始,而非像oi-wiki中的从1开始
 2. [build使用 n + 1 , calheight 使用 n ](https://www.wolfdan.cn/2019/08/21/%E7%AE%97%E6%B3%95%E6%97%A5%E5%B8%B8-16-100/)
+3. 2019年11月08日19:53:29 [更新链接](https://www.wolfdan.cn/%E7%AE%97%E6%B3%95%E6%97%A5%E5%B8%B8-16-100/)
 
 */
 
