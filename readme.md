@@ -36,3 +36,7 @@ Yesteday I have no more time to do this,so yesteday I got this idea and I do it 
 7.8.9. 再写再精炼文章
 
 降龙十八掌 同理
+
+
+2019年11月17日14:25:22 
+决定不再使用日期法更新文件了，以后都使用逻辑性文件树的方法添加每日的学习文件，详细原因见thinkInhere.md
