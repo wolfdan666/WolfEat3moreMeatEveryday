@@ -93,7 +93,7 @@ char * RC4_dissolve(char *pData){
     return pData;
 }
 
-
+/*
 int main(int argc, char const *argv[]){
     char * tmp;
     char str[512] = "这是一个用来加密的数据Data";
@@ -103,3 +103,4 @@ int main(int argc, char const *argv[]){
 
     return 0;
 }
+*/
