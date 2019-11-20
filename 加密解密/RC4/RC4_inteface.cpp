@@ -3,6 +3,11 @@
 #include <string>
 #include <string.h>
 typedef unsigned longULONG;
+// 这里可以配置修改加密因子
+// 其实真正的直接异或的key是s[256]数组,key是用于生成s数组的
+const char key[256] = {"justfortest"};
+
+
 /*初始化函数*/
 void rc4_init(unsigned char *s, unsigned char *key, unsigned long Len){
     int i = 0, j = 0;
@@ -40,18 +45,20 @@ void rc4_crypt(unsigned char *s, unsigned char *Data, unsigned long Len){
     }
 }
 
+/*
+用法: 传入明文,然后输出密文
+参数: char * 数组指针
+返回值: char * 数组指针
+
+相当于 a(明) ^ key = b(密)
+*/
 char * RC4_solve(char *pData){
-    unsigned char s[256] = {0}, s2[256] = {0};
-    char key[256] = {"justfortest"};
+    unsigned char s[256] = {0};
+
 
     unsigned long len = strlen(pData);
     int i;
     rc4_init(s, (unsigned char *)key, strlen(key));
-
-    //用s2[i]暂时保留经过初始化的s[i]，很重要的！！！
-    for (i = 0; i < 256; i++){
-        s2[i] = s[i];
-    }
 
     //加密
     rc4_crypt(s, (unsigned char *)pData, len);
@@ -61,9 +68,14 @@ char * RC4_solve(char *pData){
     return pData;
 }
 
-int RC4_dissolve(char *pData){
+/*
+用法: 传入密文,然后输出明文
+参数: char * 数组指针
+返回值: char * 数组指针
+相当于 b(密) ^ key = a(明)
+*/
+char * RC4_dissolve(char *pData){
     unsigned char s[256] = {0}, s2[256] = {0};
-    char key[256] = {"justfortest"};
 
     unsigned long len = strlen(pData);
     int i;
@@ -76,9 +88,9 @@ int RC4_dissolve(char *pData){
 
     //解密
     rc4_crypt(s2, (unsigned char *)pData, len);
-    printf("pData=%s\n\n", pData);
+    // printf("pData=%s\n\n", pData);
 
-    return 0;
+    return pData;
 }
 
 
@@ -86,7 +98,8 @@ int main(int argc, char const *argv[]){
     char * tmp;
     char str[512] = "这是一个用来加密的数据Data";
     tmp = RC4_solve(str);
-    RC4_dissolve(tmp);
+    tmp = RC4_dissolve(tmp);
+    puts(tmp);
 
     return 0;
 }
