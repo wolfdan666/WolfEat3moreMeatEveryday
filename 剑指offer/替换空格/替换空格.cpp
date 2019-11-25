@@ -52,11 +52,14 @@ public:
 
 int main(){
     char s[strLen];
-    scanf("%s",s);
+    // scanf("%s",s);
+    cin.getline(s,strLen);
     // 设置变化后的最长长度
     int len = 1000;
-    Solution::replaceSpace(s,len);
-    printf("%s\n",s );
+    Solution A;
+
+    A.replaceSpace(s,len);
+    cout<<s<<endl;
 
     return 0;
 }
