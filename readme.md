@@ -1,5 +1,5 @@
 # 声明
-此仓库为 [wolfdan666](https://github.com/wolfdan666) 的个人算法训练仓
+此仓库为 [wolfdan666](https://github.com/wolfdan666) 的 `个人算法训练` 以及 `一些cpp书籍学习demo代码` 的仓库
 
 # 内容概要
 1. 有关时间的标签,是自己之前个人每日训练的算法题,因为当初想法很简单，正如仓库的名称 `WolfEat3moreMeatEveryday` , 也就是说每天想要训练3个算法题做每天的算法竞赛练习的最少题量的限定，所以有了这些文件夹
