@@ -12,7 +12,6 @@ int ans[N];
 C a[N], b[N];
 char s[N], t[N];
 
-// 这个写法有点玄幻，暂时先这样
 void bit_reverse_swap(C *a, int n){
     for(int i=1, j=n>>1, k; i<n-1; i++){
         if(i < j) swap(a[i],a[j]);
@@ -39,7 +38,7 @@ void FFT(C* a, int n, int t){
         }
     }
     // 逆DFT变换需要的一些操作
-    if(t==-1) rep(i, 0, n) a[i]/=n;    //!!error-prone: typo ==/=
+    if(t==-1) rep(i, 0, n) a[i]/=n;
 }
 
 // 找到一个大于x的2的幂次数
@@ -49,26 +48,36 @@ int trans(int x){
     return 1<<i;
 }
 
+
 int main(){
-    for(; ~scanf("%s%s", s, t); ){
+    freopen("inrand.txt","r",stdin);
+    freopen("out.txt","w",stdout);
+    for(; ~scanf("%s", s); ){
+    {
+        // 毫秒
+        // TIME_INTERVAL_SCOPE("C++ FFT time cost:\n");
+        // 微秒
+        timespec t1, t2;
+        clock_gettime(CLOCK_MONOTONIC, &t1);
+
+        //要计时的程序
+        int n=strlen(s),l=trans(n-1);
         // 加0的预处理
-        int n=strlen(s), m=strlen(t), l=trans(n+m-1);
         rep(i, 0, n) a[i]=C(s[n-1-i]-'0');
         rep(i, n, l) a[i]=C(0);
-        rep(i, 0, m) b[i]=C(t[m-1-i]-'0');
-        rep(i, m, l) b[i]=C(0);
 
         // 分别对A,B进行预处理,然后点对表达式想乘,然后再逆DFT的FFT变换一下
-        FFT(a, l, 1), FFT(b, l, 1);
-        rep(i, 0, l) a[i]*=b[i];
-        FFT(a, l, -1);
-        // 精度处理
-        rep(i, 0, l) ans[i]=(int)(a[i].real()+0.5); ans[l]=0;    //error-prone
-        rep(i, 0, l) ans[i+1]+=ans[i]/10, ans[i]%=10;
-        int p=l;
-        for(;p && !ans[p]; --p);
-        for(; ~p; putchar(ans[p--]+'0'));    //error-prone
-        puts("");
+        FFT(a, l, 1);
+
+        rep(i,0,l) printf("%f%c%fj\n", a[i].real(),a[i].imag()<0 ? '-':'+',abs( a[i].imag()));
+
+
+        clock_gettime(CLOCK_MONOTONIC, &t2);
+        //那么f所花时间为
+        double deltaT = (t2.tv_sec - t1.tv_sec) * 10^9 + t2.tv_nsec - t1.tv_nsec;//  纳秒
+        deltaT /= 1000;
+        printf("%f us\n", deltaT );
+    }
     }
     return 0;
 }

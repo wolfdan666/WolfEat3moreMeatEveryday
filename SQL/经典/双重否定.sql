@@ -26,4 +26,4 @@ where
           and z.gno = y.gno
           and x.sno != y.sno
       )
-  )
+  );

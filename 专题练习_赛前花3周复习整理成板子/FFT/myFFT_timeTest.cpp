@@ -2,6 +2,8 @@
 // 这里有点尴尬 都是 10以内的系数
 
 #include <bits/stdc++.h>
+#include "time_interval.h"
+// #include <windows.h>
 #define rep(i, l, r) for(int i=l; i<r; i++)
 using namespace std;
 const double PI(acos(-1));
@@ -50,8 +52,19 @@ int trans(int x){
 }
 
 int main(){
+    freopen("in.txt","r",stdin);
+    freopen("out.txt","w",stdout);
     for(; ~scanf("%s%s", s, t); ){
         // 加0的预处理
+    {
+        // 毫秒
+        // TIME_INTERVAL_SCOPE("C++ FFT time cost:\n");
+        // 微秒
+timespec t1, t2;
+  clock_gettime(CLOCK_MONOTONIC, &t1);
+  // f();
+
+        //要计时的程序
         int n=strlen(s), m=strlen(t), l=trans(n+m-1);
         rep(i, 0, n) a[i]=C(s[n-1-i]-'0');
         rep(i, n, l) a[i]=C(0);
@@ -60,7 +73,10 @@ int main(){
 
         // 分别对A,B进行预处理,然后点对表达式想乘,然后再逆DFT的FFT变换一下
         FFT(a, l, 1), FFT(b, l, 1);
-        rep(i, 0, l) a[i]*=b[i];
+
+        rep(i,1,5) printf("%f%c%fj\n", a[i].real(),a[i].imag()<0 ? '-':'+',abs( a[i].imag()));
+
+        rep(i, 0, l) a[i] *= b[i];
         FFT(a, l, -1);
         // 精度处理
         rep(i, 0, l) ans[i]=(int)(a[i].real()+0.5); ans[l]=0;    //error-prone
@@ -69,6 +85,18 @@ int main(){
         for(;p && !ans[p]; --p);
         for(; ~p; putchar(ans[p--]+'0'));    //error-prone
         puts("");
+
+  clock_gettime(CLOCK_MONOTONIC, &t2);
+  //那么f所花时间为
+  double deltaT = (t2.tv_sec - t1.tv_sec) * 10^9 + t2.tv_nsec - t1.tv_nsec;//  纳秒
+  deltaT /= 1000;
+  printf("%f us\n", deltaT );
+
+
+
+
+
+    }
     }
     return 0;
 }
