@@ -1,9 +1,5 @@
-// https://www.cnblogs.com/Patt/p/5503322.html
-// 这里有点尴尬 都是 10以内的系数
-
 #include <bits/stdc++.h>
 #include "time_interval.h"
-// #include <windows.h>
 #define rep(i, l, r) for(int i=l; i<r; i++)
 using namespace std;
 const double PI(acos(-1));
