@@ -27,7 +27,7 @@ void selection_sort(std::vector<T>& arr) {
 }
 
 int main(){
-    
-    
+
+
     return 0;
 }
