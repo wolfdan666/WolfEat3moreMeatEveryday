@@ -27,6 +27,7 @@ template <typename T>
 class DynamicArray {
    public:
     void Insert(T num) {
+        // 偶数个的时候插入大顶堆，奇数个的时候插入小顶堆
         if (((min.size() + max.size()) & 1) == 0) {
             if (max.size() > 0 && num < max[0]) {
                 max.push_back(num);
