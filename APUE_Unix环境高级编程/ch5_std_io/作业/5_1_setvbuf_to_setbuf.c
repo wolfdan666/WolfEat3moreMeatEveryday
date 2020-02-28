@@ -74,6 +74,10 @@ int buffer_size(FILE *fp) { return (fp->_IO_buf_end - fp->_IO_buf_base); }
 
 
 /*
+编译:
+gcc 5_1_setvbuf_to_setbuf.c -o test.out
+
+
 我的结果
 stream = fp, fully buffered, buffer size = 0
 stream = fp, unbuffered, buffer size = 1
