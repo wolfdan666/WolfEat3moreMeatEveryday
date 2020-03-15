@@ -8,6 +8,10 @@
 * https://www.liaoxuefeng.com/wiki/897692888725344/923057403198272
 * https://zh.wikipedia.org/wiki/%E5%8D%8F%E7%A8%8B
 - golang中interface
+* https://studygolang.com/articles/12560
+* https://segmentfault.com/a/1190000013280677
+* https://www.jianshu.com/p/d80f38598d94
+* 看完这三个花了很久，还是不是太理解，所以还是要多多练习
 - const
 - 虚函数
 - http，https，https加密过程
