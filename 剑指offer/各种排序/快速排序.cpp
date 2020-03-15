@@ -25,6 +25,7 @@ int Partition(int data[],int length,int start,int end){
         return 0;
     }
 
+    // 随机选择一个值来放到最后做基准
     int index  = random(start,end);
     // swap(&data[index],&data[end]);
     swap(data[index],data[end]);
@@ -60,8 +61,8 @@ int main(){
     int data[10] = {2,4,6,1,3};
     QuickSort(data,5,0,4);
     rep(i,0,4) cout<< data[i] << " "; cout<<endl;
-    
+
     return 0;
 }
 
-// output : 1 2 3 4 6 
+// output : 1 2 3 4 6
