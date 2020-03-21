@@ -20,3 +20,36 @@
 
 ## 稳定的意义
 从一个键上排序，然后再从另一个键上排序，第一个键排序的结果可以为第二个键排序所用。
+
+
+# 选择排序和插入排序
+## 选择排序
+是 `i = 0`开始从所有值中选择最小的,一直选到`i = n-1`
+```cpp
+template<typename T> //整数或浮点数皆可使用，若要使用物件（class）时必须设定大于（>）的运算子功能
+void selection_sort(std::vector<T>& arr) {
+    for (int i = 0; i < arr.size() - 1; i++) {
+        int min = i;
+        for (int j = i + 1; j < arr.size(); j++)
+            if (arr[j] < arr[min])
+                min = j;
+        std::swap(arr[i], arr[min]);
+    }
+}
+```
+
+## 插入排序
+是从左边到右边一个个放到左边已经遍历过的block块中，新进来的根据比较来移动位置
+```cpp
+void insertion_sort(int arr[], int length){
+    int i,j;
+    // 从无序区选择数据插入到前面的有序区
+    for (i = 1; i < length; i++) {
+        int tmp = arr[i];
+        for (j = i; j > 0 && arr[j - 1] > tmp; j--){
+            arr[j] = arr[j - 1];
+        }
+        arr[j] = tmp;
+    }
+}
+```
