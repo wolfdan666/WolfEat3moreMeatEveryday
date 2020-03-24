@@ -5,7 +5,7 @@
 double GetMin(double *dbData, int iSize) {
     double dbMin;
     int i;
-    assert(iSize > 0);
+    // assert(iSize > 0);
     dbMin = dbData[0];
 
     for (i = 1; i < iSize; i++) {
@@ -21,7 +21,7 @@ double GetMin(double *dbData, int iSize) {
 double GetMax(double *dbData, int iSize) {
     double dbMax;
     int i;
-    assert(iSize > 0);
+    // assert(iSize > 0);
     dbMax = dbData[0];
 
     for (i = 1; i < iSize; i++) {
@@ -37,7 +37,7 @@ double GetMax(double *dbData, int iSize) {
 double GetAverage(double *dbData, int iSize) {
     double dbSum = 0;
     int i;
-    assert(iSize > 0);
+    // assert(iSize > 0);
     for (i = 0; i < iSize; i++) dbSum += dbData[i];
 
     return dbSum / iSize;
@@ -50,6 +50,7 @@ double UnKnown(double *dbData, int iSize) { return 0; }
 typedef double (*PF)(double *dbData, int iSize);
 
 // 根据字符得到操作类型，返回函数指针
+PF func[10] = {GetMax,GetMin,GetAverage,UnKnown};
 PF GetOperation(char c) {
     switch (c) {
         case 'M':
@@ -71,4 +72,5 @@ int main(void) {
     c = getchar();
     // 通过函数指针调用函数
     printf("result is % lf\n", GetOperation(c)(dbData, iSize));
+    printf("result is % lf\n", func[0](dbData, iSize));
 }
