@@ -232,6 +232,7 @@ template <class Key>
 struct hash { };
 
 // 下面是各种特化
+// template<>   ===  __STL_TEMPLATE_NULL
 template<>
 struct hash<char> {
     size_t operator() (char x) const { return x; }
