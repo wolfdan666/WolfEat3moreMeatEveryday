@@ -1,0 +1,4 @@
+## array
+array包装成为对象，是为了享受我们之前设计的所有的算法
+
+因为我们的Containers和Algorithms是通过Iterator联系在一起的
