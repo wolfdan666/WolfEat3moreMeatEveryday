@@ -17,3 +17,7 @@ stack还可以用vector实现，但是queue不能，因为vector是不能从头�
 
 当然你没有调用`queue<int,vector<int>>::pop()`,则不会报错，等调用时报错
 
+# 关于G2.9版和G4.9版
+老师好G2.9好追踪溯源，好理解，而G4.9版十分不友好，但其实还是有它的设计理念的，就是handle和body，主体中用一个指针指向body
+
+但是还是不能用public继承allocator，违背了is a的public继承意思
