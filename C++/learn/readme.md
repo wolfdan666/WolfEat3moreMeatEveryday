@@ -12,5 +12,5 @@
 ## 2_C++ STL与泛型编程高级-侯捷
 [C++ STL与泛型编程高级-侯捷](https://www.bilibili.com/watchlater/#/BV1Yb411p7UK/p2)
 
-## 待_cpp2.0
-[待_cpp2](https://www.bilibili.com/watchlater/#/BV1p4411v7Dh/p1)
+## 3_cpp2.0
+[3_cpp2](https://www.bilibili.com/watchlater/#/BV1p4411v7Dh/p1)
