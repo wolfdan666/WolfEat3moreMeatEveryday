@@ -1,3 +1,6 @@
+# Type Alias
+Type
+
 ```cpp
 // type alias, identical t
 // typedef void (*func)(int,int);
