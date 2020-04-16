@@ -35,3 +35,12 @@ static size_t ROUND_UP(size_t bytes) {
   return (((bytes) + __ALIGN-1) & ~(__ALIGN - 1));
 }
 ```
+
+## cookie
+因为cookie是内部内存(含2个cookie的8bytes)多少的计数，而且总体大小是16的倍数，所以后4位bit都是0，那么用用最后一位0或1表示内存是否还在手中，1表示内存已经分配出去了，0则表示内存还没有分配出去
+
+
+## 为什么各个层次都自己实现
+因为stl不能依赖c中的malloc，所以自己实现一套，以保证能跑起来
+
+因为c中的malloc要保证跨操作系统，所以自己实现malloc，而不是直接用OS.API去实现(vc10直接用的OS.API因为只用在windows平台了)
