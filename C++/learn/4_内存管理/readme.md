@@ -44,3 +44,35 @@ static size_t ROUND_UP(size_t bytes) {
 因为stl不能依赖c中的malloc，所以自己实现一套，以保证能跑起来
 
 因为c中的malloc要保证跨操作系统，所以自己实现malloc，而不是直接用OS.API去实现(vc10直接用的OS.API因为只用在windows平台了)
+
+## new的种类
+new
+operator new
+array new
+placement new---带小括号的new
+```cpp
+Rep *p = new(extra) Rep;
+```
+### operator new和placement new的区别
+new 关键字
+（1）调用operator new分配足够的空间，并调用相关对象的构造函数
+（2）不可以被重载
+
+operator new
+（1）只分配所要求的空间，不调用相关对象的构造函数。当无法满足所要求分配的空间时，则
+->如果有new_handler，则调用new_handler，否则
+->如果没要求不抛出异常（以nothrow参数表达），则执行bad_alloc异常，否则
+->返回0
+（2）可以被重载
+（3）重载时，返回类型必须声明为void*
+（4）重载时，第一个参数类型必须为表达要求分配空间的大小（字节），类型为size_t
+（5）重载时，可以带其它参数
+
+placement new：
+只是operator new重载的一个版本。它并不分配内存，只是返回指向已经分配好的某段内存的一个指针。因此不能删除它，但需要调用对象的析构函数。
+
+如果你想在已经分配的内存中创建一个对象，使用new时行不通的。也就是说placement new允许你在一个已经分配好的内存中（栈或者堆中）构造一个新的对象。原型中void* p实际上就是指向一个已经分配好的内存缓冲区的的首地址。
+
+以上: https://blog.csdn.net/f905699146/article/details/82663656
+
+## 后面5讲好像都是来自于前面课程，up主有点粗心啊
