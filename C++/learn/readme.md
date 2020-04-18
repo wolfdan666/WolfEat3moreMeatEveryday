@@ -14,3 +14,9 @@
 
 ## 3_cpp2.0
 [3_cpp2](https://www.bilibili.com/watchlater/#/BV1p4411v7Dh/p1)
+
+## 4_cpp内存管理
+[4_cpp内存管理](https://www.bilibili.com/video/BV1it411g776)
+
+## 5_cpp设计模式
+[5_cpp设计模式](https://www.bilibili.com/watchlater/#/BV11t411V7vT/p2)
