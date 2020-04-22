@@ -20,3 +20,6 @@
 
 ## 5_cpp设计模式
 [5_cpp设计模式](https://www.bilibili.com/watchlater/#/BV11t411V7vT/p2)
+
+## 6_王道OS
+[6_王道OS](https://www.bilibili.com/video/BV1YE411D7nH?p=3)
