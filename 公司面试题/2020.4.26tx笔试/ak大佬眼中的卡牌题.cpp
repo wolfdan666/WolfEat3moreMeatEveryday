@@ -21,6 +21,11 @@
 设dp[S][k] 表示S这个集合中的卡片已经选好了位置，然后最后一个数是K,
 然后枚举当前填的数是 p，所以可以知道 p卡片朝上的数是 j,
 所以 dp[S][j]=min(dp[S-{p}][k]+num) ,num是 p放下 后产生的逆序对个数。
+
+
+
+2020年4月29日15:41:11 思考总共两个小时之后，感觉冒泡排序是对的，这个方法有点复杂难懂了
+而且与自己当前的目标来说，性价比较低，pass先
 */
 
 #include<bits/stdc++.h>
@@ -53,20 +58,25 @@ int main(){
             dp[i][j]=INF;
         }
     }
+    // 这里位置是从右到左，左边是末尾
+    // 只有末尾放好了，而且放的就是自己，所以就是不用移动，移动次数为0
     for(int i=0;i<n;i++)dp[1<<i][i]=0;
     for(int i=0;i<(1<<n);i++){
         for(int j=0;j<n;j++){
             if(dp[i][j]==INF)continue;
             for(int k=0;k<n;k++){
+                // 第k位没有放好时才进入比较
                 if(i>>k&1)continue;
                 // 2020年4月27日23:52:55 这里的状压30分钟还是没有看懂，明天继续
                 int x=__builtin_popcount(i)&1;
                 if(x){
+                    // 前面奇数个已经摆好的话，我用反面去比较
                     if(b[k]<a[j])continue;
                 }else{
                     if(a[k]<b[j])continue;
                 }
                 int ans=0;
+                // 因为k为末尾，所以k之后的位置都为逆序个数
                 for(int l=k+1;l<n;l++){
                     if(i>>l&1)ans++;
                 }
@@ -75,6 +85,7 @@ int main(){
         }
     }
     int ans=INF;
+    // 全部都放好时，第i个为末尾的答案
     for(int i=0;i<n;i++)ans=min(ans,dp[(1<<n)-1][i]);
     if(ans==INF)O(-1);
     else O(ans);
