@@ -27,7 +27,7 @@
 - [哲学家进餐问题](https://github.com/wolfdan666/WolfEat3moreMeatEveryday/tree/master/C%2B%2B/learn/%E7%8E%8B%E9%81%93OS/哲学家进餐问题/)
 - [管程](https://github.com/wolfdan666/WolfEat3moreMeatEveryday/tree/master/C%2B%2B/learn/%E7%8E%8B%E9%81%93OS/管程/)
 - [死锁的概念(1)](https://github.com/wolfdan666/WolfEat3moreMeatEveryday/tree/master/C%2B%2B/learn/%E7%8E%8B%E9%81%93OS/死锁的概念(1)/)
-- [死锁的处理策略一 预防死锁](https://github.com/wolfdan666/WolfEat3moreMeatEveryday/tree/master/C%2B%2B/learn/%E7%8E%8B%E9%81%93OS/死锁的处理策略一 预防死锁/)
+- [死锁的处理策略一预防死锁](https://github.com/wolfdan666/WolfEat3moreMeatEveryday/tree/master/C%2B%2B/learn/%E7%8E%8B%E9%81%93OS/死锁的处理策略一预防死锁/)
 - [死锁的处理策略一避免死锁](https://github.com/wolfdan666/WolfEat3moreMeatEveryday/tree/master/C%2B%2B/learn/%E7%8E%8B%E9%81%93OS/死锁的处理策略一避免死锁/)
 - [死锁的处理策略检测和解除](https://github.com/wolfdan666/WolfEat3moreMeatEveryday/tree/master/C%2B%2B/learn/%E7%8E%8B%E9%81%93OS/死锁的处理策略检测和解除/)
 - [内存的基础知识](https://github.com/wolfdan666/WolfEat3moreMeatEveryday/tree/master/C%2B%2B/learn/%E7%8E%8B%E9%81%93OS/内存的基础知识/)
