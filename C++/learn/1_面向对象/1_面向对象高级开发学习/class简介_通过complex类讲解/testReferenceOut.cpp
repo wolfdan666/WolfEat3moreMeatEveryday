@@ -38,9 +38,12 @@ int zheng2(const int& a)
 
 int main(){
     int a = 233;
+    const int b = 234;
     cout<< zheng(a)<<endl;
     cout<< zheng2(a)<<endl;
     cout<< zheng3(a)<<endl;
+    // error: invalid initialization of reference of type 'int&' from expression of type 'const int'
+    // int & by = b;
 
     return 0;
 }

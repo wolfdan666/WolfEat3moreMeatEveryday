@@ -58,7 +58,7 @@ String& String::operator=(const String& str)
     return *this;
 }
 
-#include <iostream.h>
+#include <iostream>
 ostream& operator<<(ostream& os, const String& str)
 {
     os << get_c_str();
