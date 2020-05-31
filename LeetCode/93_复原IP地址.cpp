@@ -24,6 +24,20 @@
 2020年5月29日23:32:24 AC 65分钟，要是面试写这么久，黄花菜都凉了
 执行用时: 0 ms , 在所有C++提交中击败了100.00%的用户
 内存消耗: 6.6 MB , 在所有C++提交中击败了100.00% 的用户
+
+
+2020年5月30日12:39:34 反思了一下，发现可以直接把dfs写成4重for(3)循环...真实...
+2020年5月30日12:50:55 决定写一手
+2020年5月30日13:12:09
+terminate called after throwing an instance of 'std::out_of_range'
+  what():  basic_string::substr: __pos (which is 5) > this->size() (which is 4)
+最后执行的输入：
+"1111"
+
+2020年5月30日13:16:49(25分钟)
+执行用时: 4 ms , 在所有C++提交中击败了81.72% 的用户
+内存消耗: 6.7 MB , 在所有C++提交中击败了100.00% 的户
+
 */
 
 #include<bits/stdc++.h>
@@ -117,10 +131,58 @@ private:
     vector<string> ans;
 };
 
+class Solution_for {
+public:
+    bool substr_ok(string sub){
+        int tp = atoi(sub.c_str());
+        int k = sub.size();
+        if(k==3 && tp>255) return false;
+        if(tp!=0 && sub[0]=='0') return false;
+        if(tp==0 && k>1) return false;
+        return true;
+    }
+
+    vector<string> restoreIpAddresses(string s) {
+        vector<string> ans;
+
+        int sz = s.size();
+        for(int i=1;i<4;i++){
+            if(i > sz) continue;
+            string sub1 = s.substr(0,i);
+            if(!substr_ok(sub1)) continue;
+
+            for(int j=1;j<4;j++){
+                if(i+j > sz) continue;
+                string sub2 = s.substr(0+i,j);
+                if(!substr_ok(sub2)) continue;
+
+                for(int k=1;k<4;k++){
+                    if(i+j+k > sz) continue;
+                    string sub3 = s.substr(i+j,k);
+                    if(!substr_ok(sub3)) continue;
+
+                    int left_sz = sz - (i+j+k);
+                    if(left_sz<=0 || left_sz>3) continue;
+                    // for(int p=1;p<=left_sz;p++){
+                    string sub4 = s.substr(i+j+k,left_sz);
+                    if(!substr_ok(sub4)) continue;
+
+                    ans.push_back(sub1+'.'+sub2+'.'+sub3+'.'+sub4);
+                    // }
+                }
+            }
+        }
+
+        return ans;
+    }
+};
+
 int main(){
-    Solution test;
+    // Solution test;
+    Solution_for test;
     // string s = "25525511135";
-    string s = "010010";
+    // string s = "010010";
+    string s = "1111";
     vector<string> ans;
     ans = test.restoreIpAddresses(s);
     for(auto x:ans) cout<<x<<endl;

@@ -2,6 +2,8 @@
 这个文件中各种排序学习于 2019年12月17日下午
 借鉴于 : [手撕九大经典排序算法，看我就够了！](https://zhuanlan.zhihu.com/p/52884590)
 
+2020年5月30日15:27:43 觉得要看看复杂度啥的，就去[维基百科了](https://zh.wikipedia.org/wiki/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95)
+
 桶排序看的wiki百科
 
 快速排序看的 剑指offer
@@ -23,8 +25,9 @@
 
 
 # 选择排序和插入排序
-## 选择排序
+## 选择排序_O($n^2$)不稳定
 是 `i = 0`开始从所有值中选择最小的,一直选到`i = n-1`
+不稳定是因为没有判断是不是第一个最小，这样如果有相等的，会把最后一个放到最前面
 ```cpp
 template<typename T> //整数或浮点数皆可使用，若要使用物件（class）时必须设定大于（>）的运算子功能
 void selection_sort(std::vector<T>& arr) {
@@ -38,7 +41,7 @@ void selection_sort(std::vector<T>& arr) {
 }
 ```
 
-## 插入排序
+## 插入排序_O($n^2$)稳定
 是从左边到右边一个个放到左边已经遍历过的block块中，新进来的根据比较来移动位置
 ```cpp
 void insertion_sort(int arr[], int length){
