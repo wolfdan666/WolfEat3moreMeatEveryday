@@ -43,3 +43,6 @@ Foo* pArray = new Foo[5];
 
 
 ![place_new](https://cdn.jsdelivr.net/gh/wolfdan666/BlogPic/cpp/class/place_new.jpg)
+
+
+2020年6月6日09:40:48 复习(突然有点害怕等下面试官问内存管理方面，emm,没关系吧)

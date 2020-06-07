@@ -18,8 +18,10 @@ int& r = x;
 
 int x2=5;
 
-r = x2; //r不能代表其他变量,所以这里是赋值
-int& r2 = r; // 这里r2是5,(r2是r别名,相当于也是x别名)
+r = x2;
+//r不能代表其他变量,所以这里是赋值
+int& r2 = r;
+// 这里r2是5,(r2是r别名,相当于也是x别名)
 
 // java中全是reference
 
@@ -50,3 +52,5 @@ double imag(const double im) const { ... }
 
 Q: ()之后的const也是签名的一部分
 A: 所以上面两个函数()后一个加const,一个不加const就可以共存
+
+2020年6月5日23:00:21 复习

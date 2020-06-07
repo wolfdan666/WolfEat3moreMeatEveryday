@@ -39,3 +39,6 @@ private:
 
 此种情况下额外的规则:
 当成员函数的const和non-const版本同时存在，const object只会(只能)调用const版本，non-const object只会(只能)调用non-const版本
+
+
+2020年6月6日09:37:17 复习
