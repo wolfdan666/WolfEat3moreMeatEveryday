@@ -53,3 +53,5 @@ struct identity : public unary_function<T, T>{
 老师好G2.9好追踪溯源，好理解，而G4.9版十分不友好，但其实还是有它的设计理念的，就是handle和body，主体中用一个指针指向body
 
 但是还是不能用public继承allocator，违背了is a的public继承意思
+
+2020年6月9日21:17:07 复习

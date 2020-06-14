@@ -66,7 +66,7 @@ namespace input{
         for(auto i:c) cout<< i << " "; cout << endl;
 // 1 2 4 5 6 9 10
 // 520 521
-// e
+// e  --- 其实这里输入任意非整数int都可以终止，因为eos没有定义
 
 // 插入后size: 9
 // 520 521 1 2 4 5 6 9 10

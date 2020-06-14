@@ -12,3 +12,5 @@ sort要求是access_random的，所以不能用std中的sort对list和forward_li
 ![rbegin](rbegin.jpg)
 
 ![binary_search](binary_search.jpg)
+
+2020年6月10日20:03:52 复习

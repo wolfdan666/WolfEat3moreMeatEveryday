@@ -55,7 +55,7 @@ decltype(coll)::value_type elem;
 map<string,float>::value_type elem;
 ```
 
-#### used to declare teturn types
+#### used to declare return types
 Sometimes,the return type of a function depends on an expression processed with arguments.
 
 Howerer,something like
@@ -112,5 +112,9 @@ auto cmp = [](const Person& p1,const Person& p2){
 
 // ...
 
+// coll也要传cmp,很关键，详见lambda那一部分
 std::set<Person,decltype(cmp)> coll(cmp);
 ```
+
+
+2020年6月13日10:24:59 复习

@@ -17,12 +17,19 @@ inline ll qpow(ll a,ll b){ll ans=1%mod;for(;b;b>>=1){if(b&1)ans=ans*a%mod;a=a*a%
 
 
 int main(){
-    // 老师说这里输出32是未解之谜，应该是28的
-   tuple<string,int,int,complex<double>> t;
-   cout<<"sizeof= " <<sizeof(t)<<endl;
 
-   tuple<int,float,string> t1(41,6.3,"nico");
-   cout<< "tuple<int,float,string> size: "<< sizeof(t1)<<endl;
+    cout<< sizeof(int) << endl;
+    cout<< sizeof(string) << endl;
+    cout<< sizeof(double) << endl;
+    cout<< sizeof(complex<double>) << endl;
+
+    // 老师说这里输出32是未解之谜，应该是28的
+    //  但我觉得32是对的...
+    tuple<string,int,int,complex<double>> t;
+    cout<<"sizeof= " <<sizeof(t)<<endl;
+
+    tuple<int,float,string> t1(41,6.3,"nico");
+    cout<< "tuple<int,float,string> size: "<< sizeof(t1)<<endl;
 
 
     return 0;
@@ -32,6 +39,7 @@ int main(){
 ## tuple实现
 元之组合，数之组合
 ```cpp
+// 要先声明自己
 template<typename... Values>class tuple;
 template<>class tuple<> { };
 
@@ -50,6 +58,9 @@ class tuple<Head,Tail...>
     inherited& tail(){ return *this; }
  protected:
     Head m_head;
- }
+ };
 
 ```
+
+
+2020年6月10日20:29:07 复习

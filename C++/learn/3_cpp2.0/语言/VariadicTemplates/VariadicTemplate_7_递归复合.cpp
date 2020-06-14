@@ -27,6 +27,9 @@ namespace test{
         Head m_head;
     public:
         tuple() { }
+        // 成员变量在使用初始化列表初始化时，与构造函数中初始化成员列表的顺序无关，只与定义成员变量的顺序有关。因为成员变量的初始化次序是根据变量在内存中次序有关，
+        // 而内存中的排列顺序早在编译期就根据变量的定义次序决定了。这点在EffectiveC++中有详细介绍。
+        // 这里确实是先tail
         tuple(Head v,Tail... vtail)
          : m_tail(vtail...),m_head(v){ }
 
@@ -159,3 +162,5 @@ int main(){
 
     return 0;
 }
+
+// 2020年6月13日09:31:31 复习
