@@ -42,3 +42,7 @@ __pycache__
 
 # linux cpp on what I set the sa of cpp
 *.out
+
+# macos
+*.dSYM
+*.DS_Store
