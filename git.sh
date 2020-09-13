@@ -1,3 +1,5 @@
+rm -rf build
+mkdir build
 git pull suanfa master
 git add --all
 git commit -m "`date '+%Y-%m-%d %H:%M:%S'`"
