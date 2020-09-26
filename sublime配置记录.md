@@ -82,3 +82,12 @@ int main(int argc, char * argv[])
 	<scope>source.c++</scope>
 </snippet>
 ```
+5. 设置tab转4个空格,以及自动去除行尾空格
+```json
+"tab_size": 4,
+"translate_tabs_to_spaces": true,
+"trim_trailing_white_space_on_save": true
+```
+
+
+# 2020年09月26日14:34:16 配置好了之后用subl写了一会c++算法题，觉得还是VScode舒服，放弃subl，再见
