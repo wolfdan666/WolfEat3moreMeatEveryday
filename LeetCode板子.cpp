@@ -34,14 +34,30 @@ inline ll qpow(ll a,ll b){ll ans=1%mod;for(;b;b>>=1){if(b&1)ans=ans*a%mod;a=a*a%
 
 
 int main(){
-    cout<<hash<int>()(123)<<endl;
-    // 2.0之前没有string的hashfunction
-    cout<<std::hash<string>()(string("linmin"))<<endl;
+    // cout<<hash<int>()(123)<<endl;
+    // // 2.0之前没有string的hashfunction
+    // cout<<std::hash<string>()(string("linmin"))<<endl;
 
 /*
 123
 4589031273813741214
 */
 
+    int a = 7,  b = 8;
+    cin >> a;
+    int cnt = 0;
+    while (a) {
+        int tmp = a & -a;
+        a -= tmp;
+        printf("a: %d, tmp: %d\n", a, tmp);
+        cnt++;
+    }
+    cout << cnt << endl;
+
+    cout << __builtin_popcount(b) << endl;
+
+    // cout << "\065\n" << "\06\n" << "\0\n" << endl;
+
     return 0;
 }
+
