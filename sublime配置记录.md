@@ -7,7 +7,8 @@
    4. Terminal
    5. A File icon
    6. ConvertToUTF8
-3. 配置C++编译系统
+3. [给Sublime Text 3添加终端支持](https://cloud.tencent.com/developer/article/1159656)
+4. 配置C++编译系统
 mycpp.sublime-build
 ```
 {
@@ -25,7 +26,7 @@ mycpp.sublime-build
     ]
 }
 ```
-4. 配置C++snippet
+5. 配置C++snippet
 acm.sublime-snippet
 ```
 <snippet>
@@ -82,7 +83,7 @@ int main(int argc, char * argv[])
 	<scope>source.c++</scope>
 </snippet>
 ```
-5. 设置tab转4个空格,以及自动去除行尾空格
+6. 设置tab转4个空格,以及自动去除行尾空格
 ```json
 "tab_size": 4,
 "translate_tabs_to_spaces": true,
