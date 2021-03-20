@@ -23,3 +23,6 @@ int (*p)[10];
 [函数指针和指针函数_整理](https://blog.csdn.net/neve_give_up_dan/article/details/104456787)
 
 [深入理解指针数组、数组指针、函数指针、函数指针数组、指向函数指针数组的指针](https://blog.csdn.net/neve_give_up_dan/article/details/104972297)
+
+# 复习记录
+2021年03月20日17:05:37 再次学习
