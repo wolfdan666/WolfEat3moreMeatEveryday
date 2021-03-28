@@ -59,6 +59,7 @@ void PreOrderWithoutRecursion2(BTNode* root){
     cout << endl;
 }
 
+/* 这个函数与上面的逻辑不统一，不方便记忆，可以不看了 */
 void PreOrderWithoutRecursion3(BTNode* root){
     if (root == NULL)
         return;

@@ -25,7 +25,7 @@ int Partition(int data[],int length,int start,int end){
         return 0;
     }
 
-    // 随机选择一个值来放到最后做基准
+    // 随机选择一个值来放到最后data[end]做基准
     int index  = random(start,end);
     // swap(&data[index],&data[end]);
     swap(data[index],data[end]);
@@ -33,6 +33,7 @@ int Partition(int data[],int length,int start,int end){
     // index 比 small 跑得快,把小于end 的放在small 位置
     int small = start - 1;
     for(index = start; index < end; index++){
+        // 小于end的放在small前面，然后大于end的留在small后面
         if(data[index] < data[end]){
             ++small;
             if(small != index)
@@ -41,7 +42,8 @@ int Partition(int data[],int length,int start,int end){
         }
     }
 
-    // 把大于end的第一位和end换个位置
+    // 因为small后的全大于end，所以end为中间值
+    // 把大于end的第一位(++small)和end换个位置
     ++small;
     // swap(&data[small],&data[end]);
     swap(data[small],data[end]);
