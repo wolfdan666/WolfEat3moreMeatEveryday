@@ -61,7 +61,7 @@ String& String::operator=(const String& str)
 #include <iostream>
 ostream& operator<<(ostream& os, const String& str)
 {
-    os << get_c_str();
+    os << str.get_c_str();
     return os;
 }
 
