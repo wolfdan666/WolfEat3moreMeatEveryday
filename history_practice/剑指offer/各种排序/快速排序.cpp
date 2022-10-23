@@ -33,17 +33,18 @@ int Partition(int data[],int length,int start,int end){
     // index 比 small 跑得快,把小于end 的放在small 位置
     int small = start - 1;
     for(index = start; index < end; index++){
-        // 小于end的放在small前面，然后大于end的留在small后面
+        // 小于end的放在small前面，然后大于等于end的留在small后面
         if(data[index] < data[end]){
             ++small;
+            // 1 8 2 5 (data[index]=2, data[small]=8, 所以交换一下位置)
             if(small != index)
                 // swap(&data[index],&data[small]);
                 swap(data[index],data[small]);
         }
     }
 
-    // 因为small后的全大于end，所以end为中间值
-    // 把大于end的第一位(++small)和end换个位置
+    // 因为small后的全大于等于end，所以end为中间值
+    // 把大于等于end的第一位(++small)和end换个位置
     ++small;
     // swap(&data[small],&data[end]);
     swap(data[small],data[end]);
