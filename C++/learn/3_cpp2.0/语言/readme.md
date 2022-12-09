@@ -101,7 +101,7 @@ void test18_decltype(T obj){
 
     decltype(obj) anotherObj(obj);
 }
-
+```
 #### decltype,used to pass the type of a lambda
 ```cpp
 auto cmp = [](const Person& p1,const Person& p2){
@@ -118,3 +118,4 @@ std::set<Person,decltype(cmp)> coll(cmp);
 
 
 2020年6月13日10:24:59 复习
+2022年12月08日20:11:57 复习

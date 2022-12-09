@@ -31,7 +31,10 @@ namespace test4{
     }
 
     void run(){
-        cout<< max({57,48,60,100,20,18}) <<endl;
+        // cout<< max({57,48,60,100,20,18}) <<endl;
+        // 2022年12月08日15:18:06 FIXED: 这里不明白为啥用max..然后用maximum又不会传参了...
+        // chatGPT问`int maximum(int n,Args... args) 如何传参` 得知的答案，666，去掉括号就好
+        cout<< maximum(57,48,60,100,20,18) <<endl;
     }
     // 100
 }

@@ -55,3 +55,4 @@ struct identity : public unary_function<T, T>{
 但是还是不能用public继承allocator，违背了is a的public继承意思
 
 2020年6月9日21:17:07 复习
+2022年12月07日17:15:22 复习
